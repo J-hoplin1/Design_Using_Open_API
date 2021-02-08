@@ -55,7 +55,7 @@ def reProcessXML(stringXML : str) -> None:
     
     
 if __name__ == "__main__":
-    apiKey = unquote('bj9OInFd8JfcavWNdVhUfOLalfpaYG1N6wqkFTbKVzPwR0EkEj5pL55HrsPX6Nye4gREdN3InXTi2pv39h%2FgTQ%3D%3D')
+    apiKey = unquote('')
     apiCall = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson'
     getXMLDataInString = buildRequests(apiKey,apiCall)
     reProcessXML(getXMLDataInString)

@@ -1,0 +1,9 @@
+{
+    "dataDate": "2021-02-09",
+    "data": {
+        "totalDecidedPatient": "81487",
+        "todayDecidedPatient": "303",
+        "totalDeath": "1482",
+        "CumulatedConfirmPercentage": "1.3800184799"
+    }
+}

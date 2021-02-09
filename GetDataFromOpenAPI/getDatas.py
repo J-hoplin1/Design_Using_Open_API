@@ -39,7 +39,7 @@ class dataFromAPICall(object):
         self.reProcessXML(response)
 
     def reProcessXML(self,stringXML : str) -> None:
-        res = BeautifulSoup(stringXML, 'lxml-xml')
+        res = BeautifulSoup(stringXML, 'lxml-xml') # lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
     
         dayBefore = item[1]

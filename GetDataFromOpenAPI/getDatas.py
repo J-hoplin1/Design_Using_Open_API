@@ -10,7 +10,33 @@ import xml.etree.ElementTree as et
 from xml.dom import minidom # To save XML Data Pretty
 
 class dataFromAPICall(object):
+    """
+    이 클래스는 Open API로 Request한 후 Response로 받아오는 XML을 전처리하여 JSON파일로 정리합니다.
     
+    1) __init__(self,apiKey,apiCall)
+    
+    인스턴스 기본값을 초기화 합니다.
+    
+    param1 - apiKey : apiKey값을 저장합니다
+    param2 - apiCall : api 호출 URL을 받습니다.
+    
+    2) buildRequests(self)
+    
+    request를 위한 기본 URL 쿼리문을 만듭니다.
+    시작범위는 어제날짜로, 끝범위는 내일 날짜로 합니다. 오늘 데이터와 어제 데이터를 비교하여 금일 확진자 증가량을 파악합니다
+    
+    3) reProcessXML(self,stringXML : str)
+    
+    XML을 BeautifulSoup 객체로 만든 후 lxml-xml 파서를 이용해서 XML데이터를 파싱합니다. 그 후 필요한 데이터들로 딕셔너리를 만듭니다.
+    
+    param1 - stringXML : string타입 XML을 매개변수로 받습니다.
+    
+    4) def dumpToJSON(self, dicInstance : MutableSequence)
+    
+    reProcessXML()메소드로부터 받은딕셔너리를 JSON으로 dump합니다.
+    
+    
+    """
     
     def __init__(self,apiKey,apiCall):
         self.apiKey = apiKey
@@ -60,7 +86,6 @@ class dataFromAPICall(object):
         with open('smtpSendDatas.json','w') as f:
             json.dump(dicInstance,f,indent=4)
     
-    
-if __name__ == "__main__":
-    apiCalls = dataFromAPICall(unquote(''),'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson')
-    apiCalls.buildRequests()
+   
+#if __name__ == "__main__":
+#    print(dataFromAPICall.__doc__)

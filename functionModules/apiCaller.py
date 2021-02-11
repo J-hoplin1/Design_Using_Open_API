@@ -100,7 +100,7 @@ class dataFromAPICall(object):
             }   
         }
         for i,o in enumerate(newsTopics, start = 1):
-            dataDictionary['data'][f'mainBrief{i}'] = [o , news[o]]
+            dataDictionary['data']['{}'.format(mainBrief{i})] = [o , news[o]]
         self.dumpToJSON(dataDictionary)
     
     def dumpToJSON(self, dicInstance : MutableSequence):

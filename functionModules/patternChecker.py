@@ -10,6 +10,6 @@ class patternChecker(object):
     
     parameter receiver에 대한 이메일 패턴 검사를 합니다. 틀릴경우 None을 반환합니다.
     """
-    def checkEmailPattern(self,receiver) -> bool:
+    def checkEmailPattern(self,receiver):
         emailPattern = re.compile('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
         return emailPattern.match(receiver) != None

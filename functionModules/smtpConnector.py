@@ -17,7 +17,7 @@ from Datas.streamDatas import streamData
 # Pattern Checker Instance
 checker = patternChecker()
 
-def mailSend(smtpReqDatas, message,receiver) -> None:
+def mailSend(smtpReqDatas, message,receiver):
     with smt.SMTP(smtpReqDatas["server"], smtpReqDatas["SMTPPort"]) as server:
         server.starttls() # Transport Layer Security Connection
         server.login(smtpReqDatas["hostersEmail"], smtpReqDatas["hostersEmailPW"]) # login to smpt server
@@ -27,7 +27,7 @@ def mailSend(smtpReqDatas, message,receiver) -> None:
         else:
             print(f'{responseSignal}')
         
-def generateTextMime(receiver) -> None:
+def generateTextMime(receiver):
     textMakerInstance = makeText()
     if not checker.checkEmailPattern(receiver):
         print("Fatal Error : Wrong email Pattern Please Check Again")

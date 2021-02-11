@@ -22,7 +22,7 @@ class scheduler(object):
     def writeStreamHistory(self):
         dateObj = datetime.now(timezone('Asia/Seoul'))
         with open('Datas/streamStartHistory.txt','a') as t:
-            t.write(f'New Stream Generated at : {dateObj.strftime("%Y/%m/%d %H : %M : %S")}\n')
+            t.write('New Stream Generated at : {}\n'.format(dateObj.strftime("%Y/%m/%d %H : %M : %S")))
         t.close()
         
     def startStream(self):

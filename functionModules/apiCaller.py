@@ -1,9 +1,11 @@
 import requests
 import json
+import re
+from pytz import timezone
 from typing import Any, MutableSequence
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode, quote_plus, unquote
-from urllib.request import Request
+from urllib.request import Request, urlopen
 from datetime import datetime, timedelta
 from lxml import html, etree
 import xml.etree.ElementTree as et
@@ -44,7 +46,7 @@ class dataFromAPICall(object):
 
     def buildRequests(self) -> str: 
         # 코드 실행한 시점
-        executedPoint = datetime.today()
+        executedPoint = datetime.now(timezone('Asia/Seoul'))
         endDate = executedPoint + timedelta(days = 1)# 하루뒤의 시간을 의미한다.
         executedPoint = executedPoint + timedelta(days = -1)
         #시작범위
@@ -64,28 +66,43 @@ class dataFromAPICall(object):
         response = response.decode('utf-8') # bytestring to Normal String
         self.reProcessXML(response)
 
+    def addMainNews(self) -> MutableSequence:
+        covidSite = "http://ncov.mohw.go.kr/index.jsp"
+        covidNotice = "http://ncov.mohw.go.kr"
+        html = urlopen(covidSite)
+        bs = BeautifulSoup(html, 'html.parser')
+        briefTasks = dict()
+        mainbrief = bs.findAll('a',{'href' : re.compile('\/tcmBoardView\.do\?contSeq=[0-9]*')})
+        for brf in mainbrief:
+            briefTasks[brf.text] = covidNotice + brf['href']
+        return briefTasks
+        
     def reProcessXML(self,stringXML : str) -> None:
         res = BeautifulSoup(stringXML, 'lxml-xml') # lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
-    
-        dayBefore = item[1]
-        today = item[0]
-    
+        if len(item) < 2:
+            print("API data not updated yet. Try progress again after 10 minute")
+            return
+        else:
+            print("API data updated successfully. Progress process")
+            dayBefore = item[1]
+            today = item[0]
+        news = self.addMainNews()
+        newsTopics = list(news.keys())
         dataDictionary = {
             'dataDate' : datetime.strptime(today.find('stateDt').text,"%Y%m%d").date().strftime("%Y-%m-%d"),
             'data' : {
                 'totalDecidedPatient' : today.find('decideCnt').text,
                 'todayDecidedPatient' : str(int(today.find('decideCnt').text) - int(dayBefore.find('decideCnt').text)),
                 'totalDeath' : today.find('deathCnt').text,
+                'increasedDeath' : str(int(today.find('deathCnt').text) - int(dayBefore.find('deathCnt').text)),
                 'CumulatedConfirmPercentage' : today.find('accDefRate').text 
             }   
         }
+        for i,o in enumerate(newsTopics, start = 1):
+            dataDictionary['data'][f'mainBrief{i}'] = [o , news[o]]
         self.dumpToJSON(dataDictionary)
     
     def dumpToJSON(self, dicInstance : MutableSequence):
-        with open('smtpSendDatas.json','w') as f:
-            json.dump(dicInstance,f,indent=4)
-    
-   
-#if __name__ == "__main__":
-#    print(dataFromAPICall.__doc__)
+        with open('Datas/smtpSendDatas.json','w') as f:
+            json.dump(dicInstance,f)

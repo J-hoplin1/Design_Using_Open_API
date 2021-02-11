@@ -22,7 +22,9 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 
 - [x] 서비스 테스트 컨트롤러 만들기(옵션에는 서비스 시작, 구독자 추가, 종료 3개 있을것)
 
-- [ ] schedular 작성하여 특정 시간마다 실행되게끔 main stream 생성
+- [x] schedular 작성하여 특정 시간마다 실행되게끔 main stream 생성
+
+- [x] GCP를 사용해 스케줄러 MainStream 
 
 - [ ] AWS SES(Simple Email Service)를 활용하여 변경해보기
 

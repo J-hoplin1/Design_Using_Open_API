@@ -44,7 +44,7 @@ class dataFromAPICall(object):
         self.apiKey = apiKey
         self.apiCall = apiCall
 
-    def buildRequests(self) -> str: 
+    def buildRequests(self): 
         # 코드 실행한 시점
         executedPoint = datetime.now(timezone('Asia/Seoul'))
         endDate = executedPoint + timedelta(days = 1)# 하루뒤의 시간을 의미한다.
@@ -77,7 +77,7 @@ class dataFromAPICall(object):
             briefTasks[brf.text] = covidNotice + brf['href']
         return briefTasks
         
-    def reProcessXML(self,stringXML : str) -> None:
+    def reProcessXML(self,stringXML : str):
         res = BeautifulSoup(stringXML, 'lxml-xml') # lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
         if len(item) < 2:

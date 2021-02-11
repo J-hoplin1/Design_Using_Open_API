@@ -39,6 +39,7 @@ def start():
     schedulerInstance.startStream()
             
 schedule.every().day.at("10:00").do(start)
+#schedule.every(10).seconds.do(start)
 
 while True:
     schedule.run_pending() # 실행예약된 작업을 실행한다.

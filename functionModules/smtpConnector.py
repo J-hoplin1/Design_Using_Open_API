@@ -1,4 +1,5 @@
 import re
+import sys,os
 import smtplib as smt
 from email.mime.multipart import MIMEMultipart # 다양한 형식(text,img,audio) 중첩하여 담기위한 객체
 from email import encoders # message contents to binary
@@ -8,6 +9,10 @@ from datetime import datetime
 from .patternChecker import patternChecker
 from pytz import timezone
 from .textMaker import makeText
+
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+from Datas.streamDatas import streamData
 
 # Pattern Checker Instance
 checker = patternChecker()
@@ -30,13 +35,13 @@ def generateTextMime(receiver) -> None:
     
     smtpReqDatas = {
         "server" : 'smtp.naver.com',
-        "hostersEmail" : "", # Hoster's E-mail Address here (Naver Mail)
-        "hostersEmailPW" : '', # Hoster's E-mail PW here
+        "hostersEmail" : streamData.HOSTEREMAIL, # Hoster's E-mail Address here (Naver Mail)
+        "hostersEmailPW" : streamData.HOSTEREMAILPW, # Hoster's E-mail PW here
         "SMTPPort" : 587
     }
     title = f"{datetime.now(timezone('Asia/Seoul')).strftime('%Y-%m-%d')} 코로나 19 데이터"
     paragraph = textMakerInstance.makeText()
-    hoster = "" # Hoster's E-mail Address
+    hoster = streamData.HOSTEREMAIL # Hoster's E-mail Address
     reveive = receiver
     
     message = MIMEText(_text = paragraph, _charset = "utf-8")

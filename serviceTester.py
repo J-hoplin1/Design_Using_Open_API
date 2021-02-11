@@ -2,6 +2,7 @@ import json
 from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import generateTextMime
 from functionModules.patternChecker import patternChecker
+from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
 
@@ -17,8 +18,8 @@ def selectOpt() -> options:
         select = int(input(">> "))
         if 1<= select <= len(opt):
             return options(select)
-apiKey = '' # Open API Key Here
-apiURL = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson'
+apiKey = streamData.APIKEY
+apiURL = streamData.APIURL
 checker = patternChecker()
 
 def initiateData():
@@ -36,7 +37,7 @@ while True:
             generateTextMime(i)
     elif opt == options.Add_Subscriber:
         with open('Datas/subs.json','r') as f:
-            subList = json.load(f)
+            subs = json.load(f)
         newSub = input("새 구독자의 이메일 입력하기 : ")
         if not checker.checkEmailPattern(newSub):
             print("Fatal Error : Wrong email Pattern Please Check Again")

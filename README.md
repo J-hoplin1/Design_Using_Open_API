@@ -6,7 +6,7 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 
 - Langauge : Python 3.7.4
 
-- 사용한 API : https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15043376
+- [사용한 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15043376) : REST, XML
 
 - 주요 활용 : SMTP, TLS, POP3, API(XML) 
 

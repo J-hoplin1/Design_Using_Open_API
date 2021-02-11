@@ -8,7 +8,7 @@ from urllib.parse import unquote
 
 options = Enum('option',['Service_Test','Add_Subscriber','End'])
 
-def selectOpt() -> options:
+def selectOpt():
     opt = [f'{p.value}. {p.name}' for p in options]
     while True:
         print('-' * 15)

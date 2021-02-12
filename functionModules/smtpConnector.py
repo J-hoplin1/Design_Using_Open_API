@@ -23,9 +23,9 @@ def mailSend(smtpReqDatas, message,receiver):
         server.login(smtpReqDatas["hostersEmail"], smtpReqDatas["hostersEmailPW"]) # login to smpt server
         responseSignal = server.sendmail(message['From'], message['To'], message.as_string())
         if not responseSignal:
-            print(f"MessageSend Completed to {receiver}")
+            print("MessageSend Completed to {}".format(receiver))
         else:
-            print(f'{responseSignal}')
+            print('{}'.format(responseSignal))
         
 def generateTextMime(receiver):
     textMakerInstance = makeText()
@@ -39,7 +39,7 @@ def generateTextMime(receiver):
         "hostersEmailPW" : streamData.HOSTEREMAILPW, # Hoster's E-mail PW here
         "SMTPPort" : 587
     }
-    title = f"{datetime.now(timezone('Asia/Seoul')).strftime('%Y-%m-%d')} 코로나 19 데이터"
+    title = "{} 코로나 19 데이터".format(datetime.now(timezone('Asia/Seoul')).strftime('%Y-%m-%d'))
     paragraph = textMakerInstance.makeText()
     hoster = streamData.HOSTEREMAIL # Hoster's E-mail Address
     reveive = receiver

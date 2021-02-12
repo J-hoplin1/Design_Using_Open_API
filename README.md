@@ -2,7 +2,17 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 ===
 ***
 
-##### 서비스 구독을 하고싶은 분들은 jhoplin7259@gmail.com으로 이메일을 보내주시면 됩니다
+### 서비스 운영 정보
+
+- GCP(Google Cloud Engine) Compute Engine VM(Virtual Machine) Instance
+
+- 기본적인 서비스 환경
+
+  - Ubuntu 16.04 LTS
+  
+  - Python 3.5
+  
+  - GNU Screen
 
 ### Service Architecture
 
@@ -34,16 +44,6 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 - [x] GCP를 사용해 스케줄러 MainStream 
 
 - [ ] AWS SES(Simple Email Service)를 활용하여 변경해보기
-
-### 서비스 운영 정보
-
-- Google Cloud Platform VM(Virtual Machine) Instance를 활용하여 운영하고있습니다
-
-- 기본적인 서비스 환경
-
-  - Ubuntu 16.04 LTS
-  
-  - Python 3.5
 
 ### 기본적인 구현
 

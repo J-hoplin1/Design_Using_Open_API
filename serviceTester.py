@@ -23,7 +23,7 @@ apiURL = streamData.APIURL
 checker = patternChecker()
 
 def initiateData():
-    apiCallInstance = dataFromAPICall(unquote(apiKey),apiURL)
+    apiCallInstance = dataFromAPICall(apiKey,apiURL)
     apiCallInstance.buildRequests()
 
 while True:

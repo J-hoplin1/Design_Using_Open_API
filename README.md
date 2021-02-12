@@ -28,6 +28,16 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 
 - [ ] AWS SES(Simple Email Service)를 활용하여 변경해보기
 
+### 서비스 운영 정보
+
+- Google Cloud Platform VM(Virtual Machine) Instance를 활용하여 운영하고있습니다
+
+- 기본적인 서비스 환경
+
+  - Ubuntu 16.04 LTS
+  
+  - Python 3.5
+
 ### 기본적인 구현
 
 - 구현 및 코드 설명은 블로그에 올릴 예정입니다.

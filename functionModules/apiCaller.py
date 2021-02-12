@@ -44,7 +44,7 @@ class dataFromAPICall(object):
         self.apiKey = apiKey
         self.apiCall = apiCall
 
-    def buildRequests(self) -> str: 
+    def buildRequests(self): 
         # 코드 실행한 시점
         executedPoint = datetime.now(timezone('Asia/Seoul'))
         endDate = executedPoint + timedelta(days = 1)# 하루뒤의 시간을 의미한다.
@@ -71,16 +71,20 @@ class dataFromAPICall(object):
         covidNotice = "http://ncov.mohw.go.kr"
         html = urlopen(covidSite)
         bs = BeautifulSoup(html, 'html.parser')
+        sounds = []
         briefTasks = dict()
+        hotIssues = dict()
         mainbrief = bs.findAll('a',{'href' : re.compile('\/tcmBoardView\.do\?contSeq=[0-9]*')})
         for brf in mainbrief:
             briefTasks[brf.text] = covidNotice + brf['href']
+        sounds.append(briefTasks)
         hotIssue = bs.findAll('a',{'href' : re.compile('https\:\/\/www\.korea\.kr\/special\/policyFocusView\.do\?newsId\=[0-9A-Za-z]*')})
         for u in hotIssue:
-            briefTasks[u.text] = u['href']
-        return briefTasks
+            hotIssues[u.text] = u['href']
+        sounds.append(hotIssues)
+        return sounds
         
-    def reProcessXML(self,stringXML : str) -> None:
+    def reProcessXML(self,stringXML : str):
         res = BeautifulSoup(stringXML, 'lxml-xml') # lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
         if len(item) < 2:
@@ -91,7 +95,13 @@ class dataFromAPICall(object):
             dayBefore = item[1]
             today = item[0]
         news = self.addMainNews()
-        newsTopics = list(news.keys())
+
+        # 브리핑 관련 데이터
+        briefings = news[0]
+        briefTopics = list(briefings.keys())
+        #주요 이슈관련 데이터
+        hotIssues = news[1]
+        issueTopics = list(hotIssues.keys())
         dataDictionary = {
             'dataDate' : datetime.strptime(today.find('stateDt').text,"%Y%m%d").date().strftime("%Y-%m-%d"),
             'data' : {
@@ -102,8 +112,10 @@ class dataFromAPICall(object):
                 'CumulatedConfirmPercentage' : today.find('accDefRate').text 
             }   
         }
-        for i,o in enumerate(newsTopics, start = 1):
-            dataDictionary['data'][f'mainBrief{i}'] = [o , news[o]]
+        for i,o in enumerate(briefTopics, start = 1):
+            dataDictionary['data']['briefTopics{}'.format(i)] = [o , briefings[o]]
+        for i,o in enumerate(issueTopics, start = 1):
+            dataDictionary['data']['issueTopics{}'.format(i)] = [o , hotIssues[o]]
         self.dumpToJSON(dataDictionary)
     
     def dumpToJSON(self, dicInstance : MutableSequence):

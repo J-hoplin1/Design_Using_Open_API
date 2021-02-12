@@ -4,6 +4,11 @@ Open API와 SMTP, POP3 를 활용한 금일 코로나 정보 메일 자동화 �
 
 ##### 서비스 구독을 하고싶은 분들은 jhoplin7259@gmail.com으로 이메일을 보내주시면 됩니다
 
+### Service Architecture
+
+![](img/4.png)
+
+
 ### 기본정보
 
 - Langauge : Python 3.7.4

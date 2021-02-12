@@ -75,6 +75,9 @@ class dataFromAPICall(object):
         mainbrief = bs.findAll('a',{'href' : re.compile('\/tcmBoardView\.do\?contSeq=[0-9]*')})
         for brf in mainbrief:
             briefTasks[brf.text] = covidNotice + brf['href']
+        hotIssue = bs.findAll('a',{'href' : re.compile('https\:\/\/www\.korea\.kr\/special\/policyFocusView\.do\?newsId\=[0-9A-Za-z]*')})
+        for u in hotIssue:
+            briefTasks[u.text] = u['href']
         return briefTasks
         
     def reProcessXML(self,stringXML : str):

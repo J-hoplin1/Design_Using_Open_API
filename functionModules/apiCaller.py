@@ -64,7 +64,8 @@ class dataFromAPICall(object):
         })
         response = requests.get(self.apiCall + queryParameter).text.encode('utf-8') # 기본적으로 requests를 인코딩한 반환값은 Byte String이 나오게 된다.
         response = response.decode('utf-8') # bytestring to Normal String
-        self.reProcessXML(response)
+        res = BeautifulSoup(response, 'lxml-xml')
+        return res
 
     def addMainNews(self) -> MutableSequence:
         covidSite = "http://ncov.mohw.go.kr/index.jsp"
@@ -84,8 +85,8 @@ class dataFromAPICall(object):
         sounds.append(hotIssues)
         return sounds
         
-    def reProcessXML(self,stringXML : str):
-        res = BeautifulSoup(stringXML, 'lxml-xml') # lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
+    def reProcessXML(self,BSXML : BeautifulSoup):
+        res = BSXML# lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다
         item = res.findAll('item')
         if len(item) < 2:
             print("API data not updated yet. Try progress again after 10 minute")

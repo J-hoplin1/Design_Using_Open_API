@@ -44,7 +44,7 @@ class dataFromAPICall(object):
         self.apiKey = apiKey
         self.apiCall = apiCall
 
-    def buildRequests(self): 
+    def buildRequests(self) -> BeautifulSoup: 
         # 코드 실행한 시점
         executedPoint = datetime.now(timezone('Asia/Seoul'))
         endDate = executedPoint + timedelta(days = 1)# 하루뒤의 시간을 의미한다.
@@ -85,8 +85,8 @@ class dataFromAPICall(object):
         sounds.append(hotIssues)
         return sounds
         
-    def reProcessXML(self,BSXML : BeautifulSoup):
-        res = BSXML# lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다
+    def reProcessXML(self,BSXML : BeautifulSoup) -> None:
+        res = BSXML# lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
         if len(item) < 2:
             print("API data not updated yet. Try progress again after 10 minute")
@@ -119,6 +119,6 @@ class dataFromAPICall(object):
             dataDictionary['data']['issueTopics{}'.format(i)] = [o , hotIssues[o]]
         self.dumpToJSON(dataDictionary)
     
-    def dumpToJSON(self, dicInstance : MutableSequence):
+    def dumpToJSON(self, dicInstance : MutableSequence) -> None:
         with open('Datas/smtpSendDatas.json','w') as f:
             json.dump(dicInstance,f)

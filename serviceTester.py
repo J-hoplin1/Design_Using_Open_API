@@ -24,7 +24,7 @@ checker = patternChecker()
 
 def initiateData():
     apiCallInstance = dataFromAPICall(apiKey,apiURL)
-    apiCallInstance.buildRequests()
+    apiCallInstance.reProcessXML(apiCallInstance.buildRequests())
 
 while True:
     opt = selectOpt()

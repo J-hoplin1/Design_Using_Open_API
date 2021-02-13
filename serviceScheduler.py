@@ -29,7 +29,7 @@ class scheduler(object):
         while True:
             BSXML = self.apiCallInstance.buildRequests()
             item = BSXML.findAll('item')[0]
-            if sif str(item.find('createDt').text.split()[0]) != datetime.now().strftime("%Y-%m-%d"):
+            if str(item.find('createDt').text.split()[0]) != datetime.now().strftime("%Y-%m-%d"):
                 time.sleep(60)
                 pass
             else:

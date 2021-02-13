@@ -26,13 +26,22 @@ class scheduler(object):
         t.close()
         
     def startStream(self):
-        self.writeStreamHistory()
-        with open('Datas/subs.json','r') as f:
-            subs = json.load(f)
-        subscriberList = subs['subscribers']
-        self.initiateData()
-        for i in subscriberList:
-            generateTextMime(i)
+        while True:
+            BSXML = self.apiCallInstance.buildRequests()
+            item = res.findAll('item')[0]
+            if str(item.find('createDt').text) == latestAPIUpdatedTime:
+                time.sleep(60)
+                pass
+            else:
+                self.writeStreamHistory()
+                with open('Datas/subs.json','r') as f:
+                    subs = json.load(f)
+                subscriberList = subs['subscribers']
+                self.initiateData()
+                for i in subscriberList:
+                    generateTextMime(i)
+                latestAPIUpdatedTime = str(item.find('createDt').text)
+                break
 
 def start():
     schedulerInstance = scheduler()

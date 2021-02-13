@@ -8,6 +8,8 @@ from enum import Enum
 from urllib.parse import unquote
 from datetime import datetime
 from pytz import timezone
+from bs4 import BeautifulSoup
+
 
 class scheduler(object):
     

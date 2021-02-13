@@ -17,7 +17,7 @@ class scheduler(object):
         self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl)
     
     def initiateData(self):
-        self.apiCallInstance.buildRequests() # Generate smtpSendDatas
+        self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
 
     def writeStreamHistory(self):
         dateObj = datetime.now(timezone('Asia/Seoul'))

@@ -9,8 +9,6 @@ from urllib.parse import unquote
 from datetime import datetime
 from pytz import timezone
 
-latestAPIUpdatedTime = '2021-02-13 10:09:06.162'
-
 class scheduler(object):
     
     def __init__(self):

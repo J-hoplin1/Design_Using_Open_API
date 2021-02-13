@@ -28,7 +28,7 @@ class scheduler(object):
     def startStream(self):
         while True:
             BSXML = self.apiCallInstance.buildRequests()
-            item = res.findAll('item')[0]
+            item = BSXML.findAll('item')[0]
             if sif str(item.find('createDt').text.split()[0]) != datetime.now().strftime("%Y-%m-%d"):
                 time.sleep(60)
                 pass

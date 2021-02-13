@@ -9,6 +9,8 @@ from urllib.parse import unquote
 from datetime import datetime
 from pytz import timezone
 
+latestAPIUpdatedTime = '2021-02-13 10:09:06.162'
+
 class scheduler(object):
     
     def __init__(self):
@@ -17,23 +19,32 @@ class scheduler(object):
         self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl)
     
     def initiateData(self):
-        self.apiCallInstance.buildRequests() # Generate smtpSendDatas
+        self.apiCallInstance.buildRequests(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
 
     def writeStreamHistory(self):
         dateObj = datetime.now(timezone('Asia/Seoul'))
         with open('Datas/streamStartHistory.txt','a') as t:
-            t.write(f'New Stream Generated at : {dateObj.strftime("%Y/%m/%d %H : %M : %S")}\n')
+            t.write('New Stream Generated at : {}\n'.format(dateObj.strftime("%Y/%m/%d %H : %M : %S")))
         t.close()
         
     def startStream(self):
-        self.writeStreamHistory()
-        with open('Datas/subs.json','r') as f:
-            subs = json.load(f)
-        subscriberList = subs['subscribers']
-        self.initiateData()
-        for i in subscriberList:
-            generateTextMime(i)
-
+        while True:
+            BSXML = self.apiCallInstance.buildRequests()
+            item = BSXML.findAll('item')[0]
+            if str(item.find('createDt').text.split()[0]) != datetime.now().strftime("%Y-%m-%d"):
+                time.sleep(60)
+                pass
+            else:
+                self.writeStreamHistory()
+                with open('Datas/subs.json','r') as f:
+                    subs = json.load(f)
+                subscriberList = subs['subscribers']
+                self.initiateData()
+                for i in subscriberList:
+                    generateTextMime(i)
+                latestAPIUpdatedTime = str(item.find('createDt').text)
+                break
+        
 def start():
     schedulerInstance = scheduler()
     schedulerInstance.startStream()

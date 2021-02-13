@@ -29,7 +29,7 @@ class scheduler(object):
         while True:
             BSXML = self.apiCallInstance.buildRequests()
             item = res.findAll('item')[0]
-            if str(item.find('createDt').text) == latestAPIUpdatedTime:
+            if sif str(item.find('createDt').text.split()[0]) != datetime.now().strftime("%Y-%m-%d"):
                 time.sleep(60)
                 pass
             else:
@@ -40,7 +40,6 @@ class scheduler(object):
                 self.initiateData()
                 for i in subscriberList:
                     generateTextMime(i)
-                latestAPIUpdatedTime = str(item.find('createDt').text)
                 break
 
 def start():

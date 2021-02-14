@@ -44,8 +44,13 @@ class scheduler(object):
                 break
 
 def start():
-    schedulerInstance = scheduler()
-    schedulerInstance.startStream()
+    try:
+        schedulerInstance = scheduler()
+        schedulerInstance.startStream()
+    except BaseException as e:
+        with open('Datas/ErrorLog.txt','a') as t:
+            t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
+        t.close()
             
 schedule.every().day.at("10:00").do(start)
 #schedule.every(10).seconds.do(start)

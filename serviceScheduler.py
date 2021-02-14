@@ -48,7 +48,6 @@ class scheduler(object):
 def start():
     try:
         schedulerInstance = scheduler()
-        raise Exception("테스트 예외클래스")
         schedulerInstance.startStream()
     except BaseException as e:
         with open('Datas/ErrorLog.txt','a') as t:

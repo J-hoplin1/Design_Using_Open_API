@@ -8,11 +8,13 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 - 기본적인 서비스 환경
 
-  - Ubuntu 16.04 LTS
+  - Ubuntu 18.04 LTS
   
-  - Python 3.5
+  - Python 3.6.9
   
   - GNU Screen
+  
+  - vCPU x 2 + 4GB RAM
 
 ### Service Architecture
 

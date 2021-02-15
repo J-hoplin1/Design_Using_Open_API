@@ -20,6 +20,16 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 ![](img/4.png)
 
+### Service Patch Note
+- 2021년 02월 15일
+
+  - Patch Content : 보안문제 보완
+
+    - Service Tester에 있어 보안적인 문제와 작은 예외처리 업데이트가 있습니다.
+  
+    - Servie Tester의 보안문제 : 악의적인 사용자가 한가지의 이메일을 다양하게 입력할 경우에, 추후 메일 전송 과정에 있어서 불필요한 시간 소요가 있을 가능성이 예상되어 중복 불가로 변경하였습니다.
+  
+    - 예외처리 : Service Tester를 작동시킨후 옵션을 고를때 정수 이외의 값이나 Keyboard Interrupt를 통해 비정상적인 종료가 되는 점을 막고자 예외처리를 하였습니다
 
 ### 기본정보
 
@@ -46,6 +56,8 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 - [x] GCP를 사용해 스케줄러 MainStream 
 
 - [ ] AWS SES(Simple Email Service)를 활용하여 변경해보기
+
+- [ ] Node.js를 이용해 사용자 이메일 데이터베이스 연동 자동화
 
 ### 기본적인 구현
 

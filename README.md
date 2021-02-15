@@ -15,6 +15,8 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
   - GNU Screen
   
   - vCPU x 2 + 4GB RAM
+  
+  - Script Daemon형태로 운영중입니다.
 
 ### Service Architecture
 

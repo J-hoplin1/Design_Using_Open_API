@@ -24,7 +24,9 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 ### Service Patch Note
 - 2021년 02월 15일
-
+  
+  - 서비스 시작 : 오늘 기준 약 90일 정도만 운영할 예정입니다.
+  
   - Patch Content : 보안문제 보완
 
     - Service Tester에 있어 보안적인 문제와 작은 예외처리 업데이트가 있습니다.

@@ -37,7 +37,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
     
     - 기능추가 : Service Tester에 대해서 구독자 목록조회, 구독자 삭제하기 기능을 추가했습니다
 
-### 기본정보
+### Source Code 기본정보
 
 - Langauge : Python 3.7.4
 

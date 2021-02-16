@@ -17,6 +17,8 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
   - vCPU x 2 + 4GB RAM
   
   - Script Daemon형태로 운영중입니다.
+  
+  - 평균적으로 청구되었던 리소스 비용 : 1750won/day
 
 ### Service Architecture
 

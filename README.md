@@ -73,6 +73,6 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 - 구현 및 코드 설명은 블로그에 올릴 예정입니다.
 
-![](img/1.png)
+![](img/5.png)
 ![](img/2.png)
-![](img/3.png)
+![](img/6.png)

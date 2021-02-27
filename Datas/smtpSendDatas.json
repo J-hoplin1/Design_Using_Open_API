@@ -1,1 +1,30 @@
-{"dataDate": "2021-02-12", "data": {"totalDecidedPatient": "82837", "todayDecidedPatient": "403", "totalDeath": "1507", "increasedDeath": "11", "CumulatedConfirmPercentage": "1.3777445285", "mainBrief1": ["\ucf54\ub85c\ub098\ubc14\uc774\ub7ec\uc2a4\uac10\uc5fc\uc99d-19 \uad6d\ub0b4 \ubc1c\uc0dd \ud604\ud669 (2.12. 0\uc2dc \uae30\uc900 )", "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363524"], "mainBrief2": ["\ucf54\ub85c\ub098\ubc14\uc774\ub7ec\uc2a4\uac10\uc5fc\uc99d-19 \uad6d\ub0b4 \ubc1c\uc0dd \ud604\ud669 (\uc815\ub840\ube0c\ub9ac\ud551)", "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363523"], "mainBrief3": ["\ucf54\ub85c\ub098 \ubc31\uc2e0 \uac00\uc9dc\ub274\uc2a4 \u2018\uc5c4\uc815 \ub300\uc751\u2019\u2026\uc2e0\uc18d \uc0ad\uc81c\u00b7\uc218\uc0ac", " https://www.korea.kr/special/policyFocusView.do?newsId=148883871&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "], "mainBrief4": ["\uc815 \ucd1d\ub9ac \u201c\uccab \uc811\uc885 \uc544\uc2a4\ud2b8\ub77c\uc81c\ub124\uce74\ub85c\u2026\ud654\uc774\uc790 \ubc31\uc2e0\uc740 2\uc6d4\ub9d0~3\uc6d4\ucd08 \ub3c4\uc785\u201d", " https://www.korea.kr/special/policyFocusView.do?newsId=148883847&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "]}}
+{
+    "dataDate": "2021-02-27",
+    "data": {
+        "totalDecidedPatient": "89321",
+        "todayDecidedPatient": "415",
+        "totalDeath": "1595",
+        "increasedDeath": "10",
+        "CumulatedConfirmPercentage": "1.3619689226"
+    },
+    "briefing": {
+        "briefTopics1": [
+            "코로나19 국내 발생 및 예방접종 현황 (0시 기준)",
+            "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363838"
+        ],
+        "briefTopics2": [
+            "코로나바이러스감염증-19 국내 발생 현황 (2월 26일)",
+            "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363823"
+        ]
+    },
+    "hotIssue": {
+        "issueTopics1": [
+            "“거리두기 현 단계 2주간 유지…5인 모임금지도 현행대로”",
+            " https://www.korea.kr/special/policyFocusView.do?newsId=148884427&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+        ],
+        "issueTopics2": [
+            "코로나19 예방접종 이렇게 받으세요!",
+            " https://www.korea.kr/special/policyFocusView.do?newsId=148884417&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+        ]
+    }
+}

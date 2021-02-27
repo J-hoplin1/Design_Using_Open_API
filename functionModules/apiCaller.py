@@ -111,14 +111,16 @@ class dataFromAPICall(object):
                 'totalDeath' : today.find('deathCnt').text,
                 'increasedDeath' : str(int(today.find('deathCnt').text) - int(dayBefore.find('deathCnt').text)),
                 'CumulatedConfirmPercentage' : today.find('accDefRate').text 
-            }   
+            },
+            'briefing' : {},
+            'hotIssue' : {}
         }
         for i,o in enumerate(briefTopics, start = 1):
-            dataDictionary['data']['briefTopics{}'.format(i)] = [o , briefings[o]]
+            dataDictionary['briefing']['briefTopics{}'.format(i)] = [o , briefings[o]]
         for i,o in enumerate(issueTopics, start = 1):
-            dataDictionary['data']['issueTopics{}'.format(i)] = [o , hotIssues[o]]
+            dataDictionary['hotIssue']['issueTopics{}'.format(i)] = [o , hotIssues[o]]
         self.dumpToJSON(dataDictionary)
     
     def dumpToJSON(self, dicInstance : MutableSequence) -> None:
         with open('Datas/smtpSendDatas.json','w') as f:
-            json.dump(dicInstance,f)
+            json.dump(dicInstance,f,ensure_ascii=False, indent = 4)

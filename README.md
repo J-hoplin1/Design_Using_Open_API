@@ -10,7 +10,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
   - Ubuntu 18.04 LTS
   
-  - Python 3.6.9
+  - Python 3.6.9(Migrated)
   
   - GNU Screen
   
@@ -54,7 +54,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 ### Source Code 기본정보
 
-- Langauge : Python 3.7.4
+- Build ENV Langauge : Python 3.7.4
 
 - [사용한 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15043376) : REST, XML
 

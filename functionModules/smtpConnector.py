@@ -32,7 +32,11 @@ def generateTextMime(receiver):
     if not checker.checkEmailPattern(receiver):
         print("Fatal Error : Wrong email Pattern Please Check Again")
         return
-    
+    else:
+        text = textMakerInstance.makeText()
+        sendMail(receiver, text)
+        
+def sendMail(receiver,text):
     smtpReqDatas = {
         "server" : 'smtp.naver.com',
         "hostersEmail" : streamData.HOSTEREMAIL, # Hoster's E-mail Address here (Naver Mail)
@@ -40,7 +44,7 @@ def generateTextMime(receiver):
         "SMTPPort" : 587
     }
     title = "{} 코로나 19 데이터".format(datetime.now(timezone('Asia/Seoul')).strftime('%Y-%m-%d'))
-    paragraph = textMakerInstance.makeText()
+    paragraph = text
     hoster = streamData.HOSTEREMAIL # Hoster's E-mail Address
     reveive = receiver
     

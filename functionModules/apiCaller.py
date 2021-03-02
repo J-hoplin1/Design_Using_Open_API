@@ -72,6 +72,8 @@ class dataFromAPICall(object):
         covidNotice = "http://ncov.mohw.go.kr"
         html = urlopen(covidSite)
         bs = BeautifulSoup(html, 'html.parser')
+        # Bug fix 2021 03 02 : 파싱 구역 지정을 조금 더 구체화하였습니다 -> 카드 뉴스로 인한 방해
+        bs = bs.find('div',{'class' : 'm_news'})
         sounds = []
         briefTasks = dict()
         hotIssues = dict()

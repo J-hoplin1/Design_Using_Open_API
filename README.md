@@ -52,6 +52,19 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
     1. apiCaller.py : 필요 데이터가 담긴 [JSON을 초기화하는 부분](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/6e222fb3046f507fe245404df53131d71322917a/functionModules/apiCaller.py#L106)에서 브리핑 부분과 핫 이슈 부분을 따로 분류하였습니다. 또한 기존에 stream이 생성되면서 생기는 [JSON](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/main/Datas/smtpSendDatas.json)을 참고해야하는 경우가 종종 생기는데, [한글이 유니코드로 깨지는 문제와, 한줄로 출력되어 생기는 가독성 문제를 해결하였습니다.](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/6e222fb3046f507fe245404df53131d71322917a/functionModules/apiCaller.py#L126)
     2. smtpConnector.py : [약간의 클래스 내 메소드 세분화 작업이 있었습니다](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/6e222fb3046f507fe245404df53131d71322917a/functionModules/smtpConnector.py#L39). 앞으로 추가할 Broadcasting기능 등 다른 기능에서 통합적으로 사용하기위해 클래스 구조를 약간 세분화했습니다.
 
+- 2021년 03월 02일
+
+  - Patch Content : Bug fix, Add function to service tester
+
+  - 버그 내용
+  
+    - 메일 내용에서 불필요한 데이터로 인해 제대로된 정보제공이 되지 않는 버그가 있었습니다([오류](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/main/img/8.png?raw=true)). 최신 핫이슈와 보건복지부 최신 브리핑 데이터 정보같은 경우에는 [중앙사고수습본부의 대한민국 코로나정보 공식 사이트](http://ncov.mohw.go.kr/)에서 크롤링을 통해서 가져옵니다. URL링크 같은 경우 정규표현식을 통해서 가져오게 되는데, 카드 뉴스 부분의 URL이 코드에 설정한 정규표현식 패턴에 매칭하여 스크랩되게 되었습니다. 이 문제를 해결하기 위해서 기존에는 파싱 하는 부분을 지정하지 않은 상태로 크롤링을 하였습니다. 사실 스크랩 부분을 구체화를 안시킨게 저의 큰 실수였던것 같습니다. 그렇기 때문에 이번 패치에서는 [크롤링 부분 구체화 작업](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/4db9e64e705b1b7789b6d8fe781ee76faaf4f801/functionModules/apiCaller.py#L76)을 하였습니다.
+  
+  - 패치내용
+  
+    1. serviceTester.py : [데이터 백업기능](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/4db9e64e705b1b7789b6d8fe781ee76faaf4f801/serviceTester.py#L96)이 생겼습니다. 현재 운영중인 서버에서는 MySQL을 통해 운영하고 있지만 간이 테스트를 하거나 개인적인 서비스 벤치마킹을 할때 백업기능이 필요하여 넣게 되었습니다.
+    2. serviceTester.py : 베타기능이지만 [브로드캐스팅(Broadcasting)기능](https://github.com/J-hoplin1/Covid19_Mail_Service/blob/0c4bfc1681033670c8b3fd018eef59eaba857f61/serviceTester.py#L110)이 생겼습니다. 아직 베타이기 때문에 main branch에 merge를 하지는 않았습니다. 해당 기능을 어느정도 다듬고 개인적인 벤치마크 테스트가 끝나면 merge할 예정입니다
+
 ### Source Code 기본정보
 
 - Build ENV Langauge : Python 3.7.4

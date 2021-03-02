@@ -1,4 +1,7 @@
+import os
 import json
+import shutil
+import datetime
 from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import generateTextMime
 from functionModules.patternChecker import patternChecker
@@ -6,7 +9,7 @@ from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
 
-options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','End'])
+options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Backup','End'])
 
 def selectOpt() -> options:
     opt = [f'{p.value}. {p.name}' for p in options]
@@ -89,6 +92,21 @@ while True:
                 except ValueError:
                     print("해당 이메일은 구독자 목록에 없습니다.")
                     loop = False
+    # Add backup
+    elif opt == options.Backup:
+        try:
+            try:
+                if not os.path.exists('Backup'):
+                    os.makedirs('Backup')
+                else:
+                    pass
+            except OSError as e:
+                print("Error Occured While generating directory 'Backup'")
+            shutil.copyfile('Datas/subs.json', f'Backup/subs.json')
+            
+        except BaseException as e:
+            print("Backup Failed.")
+            pass
     else:
         print("Service Close")
         break

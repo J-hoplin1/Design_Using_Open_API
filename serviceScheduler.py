@@ -16,7 +16,8 @@ class scheduler(object):
     def __init__(self):
         self.apiKey = streamData.APIKEY
         self.apiUrl = streamData.APIURL
-        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl)
+        self.bitlyKey = streamData.BITLYAPIKEY
+        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl,self.bitlyKey)
     
     def initiateData(self):
         self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas

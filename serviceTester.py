@@ -3,13 +3,13 @@ import json
 import shutil
 import datetime
 from functionModules.apiCaller import dataFromAPICall
-from functionModules.smtpConnector import generateTextMime
+from functionModules.smtpConnector import *
 from functionModules.patternChecker import patternChecker
 from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
 
-options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Backup','End'])
+options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Backup','Broadcast','End'])
 
 def selectOpt() -> options:
     opt = [f'{p.value}. {p.name}' for p in options]
@@ -107,6 +107,15 @@ while True:
         except BaseException as e:
             print("Backup Failed.")
             pass
+    elif opt == options.Broadcast:
+        title = input("Broadcast title : ")
+        text = input("Broadcast content : ")
+        with open('Datas/subs.json','r') as f:
+            subs = json.load(f)
+        subscriberList = subs['subscribers']
+        for i in subscriberList:
+            sendMail(i,text,title)
+            
     else:
         print("Service Close")
         break

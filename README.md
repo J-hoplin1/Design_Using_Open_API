@@ -93,7 +93,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
  
 - 2021년 03월 15일
 
-  - Bitly 단축URL 본 서비스에 
+  - Bitly 단축URL 본 서비스에 적용    
 
 ### Source Code 기본정보
 

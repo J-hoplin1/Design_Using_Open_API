@@ -34,16 +34,17 @@ def generateTextMime(receiver):
         return
     else:
         text = textMakerInstance.makeText()
-        sendMail(receiver, text)
+        title = "{} 코로나 19 데이터".format(datetime.now(timezone('Asia/Seoul')).strftime('%Y년 %m월 %d일'))
+        sendMail(receiver, text, title)
         
-def sendMail(receiver,text):
+def sendMail(receiver,text,title):
     smtpReqDatas = {
         "server" : 'smtp.naver.com',
         "hostersEmail" : streamData.HOSTEREMAIL, # Hoster's E-mail Address here (Naver Mail)
         "hostersEmailPW" : streamData.HOSTEREMAILPW, # Hoster's E-mail PW here
         "SMTPPort" : 587
     }
-    title = "{} 코로나 19 데이터".format(datetime.now(timezone('Asia/Seoul')).strftime('%Y-%m-%d'))
+    title = title
     paragraph = text
     hoster = streamData.HOSTEREMAIL # Hoster's E-mail Address
     reveive = receiver

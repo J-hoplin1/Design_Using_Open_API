@@ -1,8 +1,9 @@
 import schedule
-import json,time
+import json,time,os
 from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import generateTextMime
 from functionModules.patternChecker import patternChecker
+from functionModules.databaseConnector import SQLConnectorManager
 from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
@@ -14,6 +15,11 @@ from bs4 import BeautifulSoup
 class scheduler(object):
     
     def __init__(self):
+        # Declar SQL Manager
+        self.DBManager = SQLConnectorManager()
+        # Initiate subscriber data : Generate subs.json
+        self.DBManager.generateSublist()
+        self.DBManager.functionDatasInitiater(streamData)
         self.apiKey = streamData.APIKEY
         self.apiUrl = streamData.APIURL
         self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl)
@@ -44,10 +50,11 @@ class scheduler(object):
                     generateTextMime(i)
                 latestAPIUpdatedTime = str(item.find('createDt').text)
                 break
-        
+
+schedulerInstance = scheduler()
 def start():
     try:
-        schedulerInstance = scheduler()
+        
         schedulerInstance.startStream()
     except BaseException as e:
         with open('Datas/ErrorLog.txt','a') as t:
@@ -58,5 +65,9 @@ schedule.every().day.at("10:00").do(start)
 #schedule.every(10).seconds.do(start)
 
 while True:
-    schedule.run_pending() # 실행예약된 작업을 실행한다.
-    time.sleep(5)
+    try:
+        schedule.run_pending() # 실행예약된 작업을 실행한다.
+        time.sleep(5)
+    except BaseException as e:
+        print("Service Forecly Closed")
+        os.remove('Datas/subs.json')

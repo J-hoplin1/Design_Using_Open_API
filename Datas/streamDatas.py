@@ -3,3 +3,4 @@ class streamData(object):
     APIURL = None
     HOSTEREMAIL = None 
     HOSTEREMAILPW = None
+    BITLYKEY = None

@@ -7,10 +7,10 @@ class SQLConnectorManager(object):
     def __init__(self):
         # Connect to MySQL and read Sub list
         self.sqlCNT = sql.connect(
-            user = 'root', # SQL Access User 
-            password = 'hoplinsql123', # SQL User Password
-            host = '127.0.0.1', # SQL location address
-            db = 'smtpdatas',
+            user = '', # SQL Access User 
+            password = '', # SQL User Password
+            host = '', # SQL location address
+            db = '',
         )
         # Define SQL Cursor 
         self.cursor = self.sqlCNT.cursor(sql.cursors.DictCursor)

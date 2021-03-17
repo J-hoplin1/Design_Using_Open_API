@@ -11,6 +11,7 @@ from datetime import datetime
 from pytz import timezone
 from bs4 import BeautifulSoup
 
+loop = True
 
 class scheduler(object):
     
@@ -22,7 +23,8 @@ class scheduler(object):
         self.DBManager.functionDatasInitiater(streamData)
         self.apiKey = streamData.APIKEY
         self.apiUrl = streamData.APIURL
-        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl)
+        self.bitlykey = streamData.BITLYKEY
+        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl,self.bitlykey)
     
     def initiateData(self):
         self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
@@ -61,13 +63,14 @@ def start():
             t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
         t.close()
             
-schedule.every().day.at("10:00").do(start)
-#schedule.every(10).seconds.do(start)
+#schedule.every().day.at("10:00").do(start)
+schedule.every(10).seconds.do(start)
 
-while True:
+while loop:
     try:
         schedule.run_pending() # 실행예약된 작업을 실행한다.
         time.sleep(5)
     except BaseException as e:
         print("Service Forecly Closed")
         os.remove('Datas/subs.json')
+        loop = False

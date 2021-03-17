@@ -4,6 +4,7 @@ import re
 from pytz import timezone
 from typing import Any, MutableSequence
 from bs4 import BeautifulSoup
+from .getBitlyLink import letsGetBitlyShortURL
 from urllib.parse import urlencode, quote_plus, unquote
 from urllib.request import Request, urlopen
 from datetime import datetime, timedelta
@@ -40,9 +41,13 @@ class dataFromAPICall(object):
     
     """
     
-    def __init__(self,apiKey,apiCall):
+    def __init__(self,apiKey,apiCall,bitlyKey):
         self.apiKey = apiKey
         self.apiCall = apiCall
+        self.bitlyKey = bitlyKey
+        self.getShortLink = letsGetBitlyShortURL(bitlyKey)
+        # initiate instance's GUID while initiate api class
+        self.getShortLink.getGUID()
 
     def buildRequests(self) -> BeautifulSoup: 
         # 코드 실행한 시점
@@ -79,7 +84,7 @@ class dataFromAPICall(object):
         hotIssues = dict()
         mainbrief = bs.findAll('a',{'href' : re.compile('\/tcmBoardView\.do\?contSeq=[0-9]*')})
         for brf in mainbrief:
-            briefTasks[brf.text] = covidNotice + brf['href']
+            briefTasks[brf.text] = self.getShortLink.getshortenURL(covidNotice + brf['href'])
         sounds.append(briefTasks)
         hotIssue = bs.findAll('a',{'href' : re.compile('https\:\/\/www\.korea\.kr\/special\/policyFocusView\.do\?newsId\=[0-9A-Za-z]*')})
         for u in hotIssue:

@@ -95,9 +95,21 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
   - Bitly 단축URL, Broadcasting기능 본 서비스에 적용 패치
 
-- 2021년 03월 16일
+- 2021년 03월 17일
 
-  - [Server상에서 운영중인 SQL연동 코드 공개](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/Server-Operating-Code-ver1/functionModules)         
+  - 이번 코드 공개 및 수정이 공식적으로 마지막임을 알려드립니다.(건강상의 문제로 남은 일수동안에는 서비스 운영 및 관리만 할 예정입니다)
+
+  - 우선 결론적으로 패치노트 작성에서는 활용 용도에 따라 나눈 3가지 버전 링크를 올릴 예정입니다
+   
+    1. [현재 서버에서 사용중인 모든 코드들](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/main).
+  
+      - 서버에서 운영하는 방식은 Python 3.6.9(Virtual Environment) + MySQL + Bitly API + Script Daemon + Open API + Google Cloud Platform Compute Engine을 결합해 운영하고 있습니다
+
+    2. [Bitly API를 사용하지 않는 버전](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/Server-Operating-Code-ver1)
+    
+    3. [Bitly API와 Database연동 미사용 하는 버전](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/WithoutSQLVersion)
+ 
+  - 2021년 03월 17일부로 이 서비스의 업데이트는 공식적으로 종료하겠습니다! 남은 운영 기간동안에는 서버 관리, 버그 관리 등 운영적 측면에 집중할 예정입니다.
 
 ### Source Code 기본정보
 

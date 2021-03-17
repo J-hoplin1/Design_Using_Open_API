@@ -22,7 +22,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 ### Service Architecture
 
-![](img/4.png)
+![](img/13.png)
 
 ### Service Patch Note
 - 2021년 02월 15일

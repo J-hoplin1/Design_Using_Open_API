@@ -97,7 +97,7 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
 - 2021년 03월 16일
 
-  - Server상에서 운영중인 SQL연동 코드 공개         
+  - [Server상에서 운영중인 SQL연동 코드 공개](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/Server-Operating-Code-ver1/functionModules)         
 
 ### Source Code 기본정보
 

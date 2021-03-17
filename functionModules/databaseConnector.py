@@ -7,10 +7,10 @@ class SQLConnectorManager(object):
     def __init__(self):
         # Connect to MySQL and read Sub list
         self.sqlCNT = sql.connect(
-            user = '', # SQL Access User 
-            password = '', # SQL User Password
-            host = '', # SQL location address
-            db = '',
+            user = 'root', # SQL Access User 
+            password = 'hoplinsql123', # SQL User Password
+            host = '127.0.0.1', # SQL location address
+            db = 'smtpdatas',
         )
         # Define SQL Cursor 
         self.cursor = self.sqlCNT.cursor(sql.cursors.DictCursor)
@@ -41,6 +41,7 @@ class SQLConnectorManager(object):
         instance.APIURL = datas[0]['APIURL']
         instance.HOSTEREMAIL = datas[0]['HOSTERMAIL']
         instance.HOSTEREMAILPW = datas[0]['HOSTERMAILPW']
+        instance.BITLYKEY = datas[0]['BITLYKEY']
     
     def addNewSub(self, mail):
         # SQL statement : Register new subscriber to database

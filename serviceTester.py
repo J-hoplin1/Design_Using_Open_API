@@ -39,9 +39,10 @@ class adminTool(object):
         self.DBManager.functionDatasInitiater(streamData)
         self.apiKey = streamData.APIKEY
         self.apiURL = streamData.APIURL
+        self.bitlyKey = streamData.BITLYKEY
     
     def initiateData(self):
-        apiCallInstance = dataFromAPICall(self.apiKey,self.apiURL)
+        apiCallInstance = dataFromAPICall(self.apiKey,self.apiURL,self.bitlyKey)
         apiCallInstance.reProcessXML(apiCallInstance.buildRequests())
     
     def mainLoop(self):
@@ -128,5 +129,5 @@ if __name__=="__main__":
         adTool = adminTool()
         adTool.mainLoop()
     except BaseException as e:
-        print("Error Occured")
+        print(f"Error Occured : {e}")
         os.remove('Datas/subs.json')

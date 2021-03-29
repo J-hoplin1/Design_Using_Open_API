@@ -45,9 +45,9 @@ class dataBaseInitiator(object):
 
     def getConnectionAndCursor(self) -> None:
         self.sqlConnection = sql.connect(
-            user='root',
-            password='hoplinsql123',
-            host='127.0.0.1'
+            user='',
+            password='',
+            host=''
         )
         self.cursor = self.sqlConnection.cursor(sql.cursors.DictCursor)
 

@@ -108,8 +108,10 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
     2. [Bitly API를 사용하지 않는 버전](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/Server-Operating-Code-ver1)
     
     3. [Bitly API와 Database연동 미사용 하는 버전](https://github.com/J-hoplin1/Covid19_Mail_Service/tree/WithoutSQLVersion)
- 
-  - 2021년 03월 17일부로 이 서비스의 업데이트는 공식적으로 종료합니다. 남은 운영 기간동안에는 서버 관리, 버그 관리 등 운영적 측면에 집중할 예정입니다.
+
+- 2021년 04월 01일
+
+  - Database Initiator추가와 Database Initiator, Database Connector간에 일괄적인 데이터 피킹이 가능하도록 config.yml파일을 적용하였습니다
 
 ### Source Code 기본정보
 

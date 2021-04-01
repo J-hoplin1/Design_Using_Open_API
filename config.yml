@@ -1,0 +1,16 @@
+---
+
+sqlConnection :
+ user : ""
+ password : ""
+ host : ""
+ db : ""
+
+
+serviceExecuteData :
+ apiKey : ""
+ apiURL : ""
+ hostermail : ""
+ hostermailpw : ""
+ bitlykey : ""
+...

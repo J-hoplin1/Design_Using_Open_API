@@ -1,16 +1,19 @@
 from urllib.parse import unquote
 import pymysql as sql
 import json
+import yaml
 
 
 class SQLConnectorManager(object):
     def __init__(self):
+        with open('config.yml') as f:
+            self.ymlIns = yaml.load(f,yaml.FullLoader)
         # Connect to MySQL and read Sub list
         self.sqlCNT = sql.connect(
-            user = '', # SQL Access User 
-            password = '', # SQL User Password
-            host = '', # SQL location address
-            db = '',
+            user=f"{self.ymlIns['sqlConnection']['user']}",
+            password=f"{self.ymlIns['sqlConnection']['password']}",
+            host=f"{self.ymlIns['sqlConnection']['host']}",
+            db = f"{self.ymlIns['sqlConnection']['db']}"
         )
         # Define SQL Cursor 
         self.cursor = self.sqlCNT.cursor(sql.cursors.DictCursor)

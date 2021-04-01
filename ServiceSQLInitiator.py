@@ -5,6 +5,7 @@ Latest update : 2021/03/29
 License : MIT License(Open Source)
 '''
 
+import yaml
 import pymysql as sql
 import json
 from enum import Enum
@@ -33,6 +34,10 @@ class dataBaseInitiator(object):
         -> Please revise your json location before execute
 
     5. checkConnectionStatus : Check Status if this process(Code) connected with MySQL
+    
+    6. initateServiceDatas : Initiate Service executive Datas with reading yml file
+    
+    7. deleteDatabase : Delete Service Database
 
     '''
     class connectionExceptions(Exception):
@@ -41,13 +46,16 @@ class dataBaseInitiator(object):
     def __init__(self) -> None:
         self.sqlConnection = None # Variable : Save Connection Instance
         self.cursor = None # Variable : Save SQL Cursor
+        self.ymlIns = None
+        with open('config.yml') as f:
+            self.ymlIns = yaml.load(f,yaml.FullLoader)
         self.getConnectionAndCursor()
 
     def getConnectionAndCursor(self) -> None:
         self.sqlConnection = sql.connect(
-            user='',
-            password='',
-            host=''
+            user=f"{self.ymlIns['sqlConnection']['user']}",
+            password=f"{self.ymlIns['sqlConnection']['password']}",
+            host=f"{self.ymlIns['sqlConnection']['host']}"
         )
         self.cursor = self.sqlConnection.cursor(sql.cursors.DictCursor)
 
@@ -63,7 +71,7 @@ class dataBaseInitiator(object):
                 "serviceExecuteDatas" : """
                 CREATE TABLE adminDatas(
                     APIKEY VARCHAR(150),
-                    APIURL VARCHAR(200),
+                    APIURL VARCHAR(300),
                     HOSTERMAIL VARCHAR(100),
                     HOSTERMAILPW VARCHAR(100),
                     BITLYKEY VARCHAR(100)
@@ -72,7 +80,7 @@ class dataBaseInitiator(object):
             }
         }
         for ip in list(essentialDBList.keys()):
-            print(f"Initiating Database {ip}")
+            print(f"\nInitiating Database {ip}\n")
             #Create database
             self.cursor.execute(f"CREATE DATABASE {ip}")
             #Make Cursor to use new generated Database : To initiate tables
@@ -82,6 +90,17 @@ class dataBaseInitiator(object):
                 print(f"Initiating table {ip} - {up}")
                 self.cursor.execute(essentialDBList[ip][up])
             print("=" * 50)
+            self.initateServiceDatas()
+    
+    def initateServiceDatas(self) -> None:
+        print("\nInitiating Service Datas. Please revise yml file after this work(sqlConnection - db).")
+        self.cursor.execute("USE covid19MailServiceData")
+        sqlState = f"""
+            INSERT INTO adminDatas (APIKEY,APIURL,HOSTERMAIL,HOSTERMAILPW,BITLYKEY)
+            VALUES (\'{self.ymlIns['serviceExecuteData']['apiKey']}\',\'{self.ymlIns['serviceExecuteData']['apiURL']}\',\'{self.ymlIns['serviceExecuteData']['hostermail']}\',\'{self.ymlIns['serviceExecuteData']['hostermailpw']}\',\'{self.ymlIns['serviceExecuteData']['bitlykey']}\');
+        """
+        self.cursor.execute(sqlState)
+        self.sqlConnection.commit()
 
     def moveDataJsonToSQL(self):
         with open('Datas/subs.json', 'r') as f:
@@ -97,8 +116,12 @@ class dataBaseInitiator(object):
         else:
             print("Connection Failed. Reconnect to MySQL")
             self.getConnectionAndCursor()
+    
+    def deleteDatabase(self):
+        self.cursor.execute("DROP DATABASE covid19MailServiceData")
+    
 
-option = Enum('option',["Initiate_Database_And_Move_Data","Only_Initiate_Database_Structure", "Only_Move_JSON_to_Database","Connection_Check","Close"])
+option = Enum('option',["Initiate_Database_And_Move_Data","Only_Initiate_Database_Structure", "Only_Move_JSON_to_Database","Connection_Check","Delete_Database","Close"])
 
 def selectOpt() -> Enum:
     opt = [f'{p.value}. {p.name}' for p in option]
@@ -131,6 +154,8 @@ def loop() -> None:
             initiator.moveDataJsonToSQL()
         elif opt == option.Connection_Check:
             initiator.checkConnectionStatus()
+        elif opt == option.Delete_Database:
+            initiator.deleteDatabase()
         else:
             print("Initiator Close")
             break

@@ -9,7 +9,7 @@ class makeText(object):
     
     """
     def __init__(self):
-        with open('Datas/smtpSendDatas.json') as w:
+        with open('../Datas/smtpSendDatas.json') as w:
             self.data = json.load(w)
     
     def makeText(self):

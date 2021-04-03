@@ -1,5 +1,6 @@
 import schedule
-import json,time,os
+import json,time,os,sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import generateTextMime
 from functionModules.patternChecker import patternChecker
@@ -31,7 +32,7 @@ class scheduler(object):
 
     def writeStreamHistory(self):
         dateObj = datetime.now(timezone('Asia/Seoul'))
-        with open('Datas/streamStartHistory.txt','a') as t:
+        with open('../Datas/streamStartHistory.txt','a') as t:
             t.write('New Stream Generated at : {}\n'.format(dateObj.strftime("%Y/%m/%d %H : %M : %S")))
         t.close()
         
@@ -44,7 +45,7 @@ class scheduler(object):
                 pass
             else:
                 self.writeStreamHistory()
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 subscriberList = subs['subscribers']
                 self.initiateData()
@@ -59,7 +60,7 @@ def start():
         
         schedulerInstance.startStream()
     except BaseException as e:
-        with open('Datas/ErrorLog.txt','a') as t:
+        with open('../Datas/ErrorLog.txt','a') as t:
             t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
         t.close()
             
@@ -72,5 +73,5 @@ while loop:
         time.sleep(5)
     except BaseException as e:
         print("Service Forecly Closed")
-        os.remove('Datas/subs.json')
+        os.remove('../Datas/subs.json')
         loop = False

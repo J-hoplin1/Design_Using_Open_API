@@ -1,4 +1,5 @@
-import os
+import os,sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import json
 import shutil
 import datetime
@@ -9,6 +10,7 @@ from functionModules.databaseConnector import SQLConnectorManager
 from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
+
 
 options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Backup','Broadcast','End'])
 
@@ -49,14 +51,14 @@ class adminTool(object):
         while True:
             opt = selectOpt()
             if opt == options.Service_Test:
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 subscriberList = subs['subscribers']
                 self.initiateData()
                 for i in subscriberList:
                     generateTextMime(i)
             elif opt == options.Add_Subscriber:
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 newSub = input("새 구독자의 이메일 입력하기 : ")
                 if not self.checker.checkEmailPattern(newSub):
@@ -67,7 +69,7 @@ class adminTool(object):
                     print("구독자 추가가 정상적으로 완료되었습니다.")
     
             elif opt == options.View_Subscriber_List:
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 sublist = subs['subscribers']
                 print('\n' + '=' * 25)
@@ -76,7 +78,7 @@ class adminTool(object):
                 print('=' * 25 + "\n")
     
             elif opt == options.Delete_User:
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 sublist = subs['subscribers']
                 loop = True
@@ -104,15 +106,15 @@ class adminTool(object):
                             pass
                     except OSError as e:
                         print("Error Occured While generating directory 'Backup'")
-                    shutil.copyfile('Datas/subs.json', f'Backup/subs.json')
+                    shutil.copyfile('../Datas/subs.json', f'Backup/subs.json')
             
                 except BaseException as e:
-                    print("Backup Failed.")
+                    print(e)
                     pass
             elif opt == options.Broadcast:
                 title = input("Broadcast title : ")
                 text = input("Broadcast content : ")
-                with open('Datas/subs.json','r') as f:
+                with open('../Datas/subs.json','r') as f:
                     subs = json.load(f)
                 subscriberList = subs['subscribers']
                 for i in subscriberList:
@@ -120,7 +122,7 @@ class adminTool(object):
             
             else:
                 print("Service Close")
-                os.remove('Datas/subs.json')
+                os.remove('../Datas/subs.json')
                 break
 
                 
@@ -130,4 +132,4 @@ if __name__=="__main__":
         adTool.mainLoop()
     except BaseException as e:
         print(f"Error Occured : {e}")
-        os.remove('Datas/subs.json')
+        os.remove('../Datas/subs.json')

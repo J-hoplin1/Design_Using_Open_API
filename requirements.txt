@@ -3,3 +3,4 @@ lxml
 schedule
 pytz
 pymysql
+requests

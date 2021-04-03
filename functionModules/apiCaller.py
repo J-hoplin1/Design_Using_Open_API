@@ -129,5 +129,5 @@ class dataFromAPICall(object):
         self.dumpToJSON(dataDictionary)
     
     def dumpToJSON(self, dicInstance : MutableSequence) -> None:
-        with open('Datas/smtpSendDatas.json','w') as f:
+        with open('../Datas/smtpSendDatas.json','w') as f:
             json.dump(dicInstance,f,ensure_ascii=False, indent = 4)

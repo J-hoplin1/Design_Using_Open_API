@@ -6,7 +6,7 @@ import yaml
 
 class SQLConnectorManager(object):
     def __init__(self):
-        with open('config.yml') as f:
+        with open('../config.yml') as f:
             self.ymlIns = yaml.load(f,yaml.FullLoader)
         # Connect to MySQL and read Sub list
         self.sqlCNT = sql.connect(
@@ -32,7 +32,7 @@ class SQLConnectorManager(object):
             "subscribers" : emailList
         }
         # Save subs.json
-        with open('Datas/subs.json','w') as i:
+        with open('../Datas/subs.json','w') as i:
             json.dump(jsonProto,i,indent = 4)
     
     # Initiate streamDatas.py

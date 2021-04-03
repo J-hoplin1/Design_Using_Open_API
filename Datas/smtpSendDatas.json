@@ -1,30 +1,30 @@
 {
-    "dataDate": "2021-02-27",
+    "dataDate": "2021-04-03",
     "data": {
-        "totalDecidedPatient": "89321",
-        "todayDecidedPatient": "415",
-        "totalDeath": "1595",
-        "increasedDeath": "10",
-        "CumulatedConfirmPercentage": "1.3619689226"
+        "totalDecidedPatient": "104736",
+        "todayDecidedPatient": "543",
+        "totalDeath": "1740",
+        "increasedDeath": "3",
+        "CumulatedConfirmPercentage": "1.3506805825"
     },
     "briefing": {
         "briefTopics1": [
-            "ì½”ë¡œë‚˜19 êµ­ë‚´ ë°œìƒ ë° ì˜ˆë°©ì ‘ì¢… í˜„í™© (0ì‹œ ê¸°ì¤€)",
-            "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363838"
+            "¸¶½ºÅ© ¹ÌÂø¿ë µî ÇÙ½É¹æ¿ª¼öÄ¢ À§¹İ¿¡ ¹«°ü¿ë ¿øÄ¢",
+            "https://bit.ly/3dsSTfo"
         ],
         "briefTopics2": [
-            "ì½”ë¡œë‚˜ë°”ì´ëŸ¬ìŠ¤ê°ì—¼ì¦-19 êµ­ë‚´ ë°œìƒ í˜„í™© (2ì›” 26ì¼)",
-            "http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=363823"
+            "ÁÖ¿ä º¸°ÇÀÇ·á´ÜÃ¼Àåµé, ¾Æ½ºÆ®¶óÁ¦³×Ä« ¹é½Å Á¢Á¾",
+            "https://bit.ly/3wm0yo7"
         ]
     },
     "hotIssue": {
         "issueTopics1": [
-            "â€œê±°ë¦¬ë‘ê¸° í˜„ ë‹¨ê³„ 2ì£¼ê°„ ìœ ì§€â€¦5ì¸ ëª¨ì„ê¸ˆì§€ë„ í˜„í–‰ëŒ€ë¡œâ€",
-            " https://www.korea.kr/special/policyFocusView.do?newsId=148884427&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+            "Á¤ ÃÑ¸® ¡°ÄÚ·Î³ª19 À§ÅÂ·Î¿î »óÈ²¡¦¹æ¿ª¿¡ °æ°¢½É °¡Á®¾ß¡±",
+            " https://www.korea.kr/special/policyFocusView.do?newsId=148885804&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
         ],
         "issueTopics2": [
-            "ì½”ë¡œë‚˜19 ì˜ˆë°©ì ‘ì¢… ì´ë ‡ê²Œ ë°›ìœ¼ì„¸ìš”!",
-            " https://www.korea.kr/special/policyFocusView.do?newsId=148884417&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+            "¹æ¿ª´ç±¹ ¡°ÀÌÆ²Â° 500¸í´ë È®Áø¡¦±äÀå°¨ ÃÖ°í·Î ³ô¿© ´ëÀÀ¡±",
+            " https://www.korea.kr/special/policyFocusView.do?newsId=148885788&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
         ]
     }
 }

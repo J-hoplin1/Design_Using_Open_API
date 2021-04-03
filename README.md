@@ -113,6 +113,10 @@ Open API와 SMTP, POP3 원리를 활용한 금일 코로나 정보 메일 자동
 
   - Database Initiator추가와 Database Initiator, Database Connector간에 일괄적인 데이터 피킹이 가능하도록 config.yml파일을 적용하였습니다
 
+- 2021년 04월 03일
+
+  - 디렉토리 구조 간
+
 ### Source Code 기본정보
 
 - Build ENV Langauge : Python 3.7.4

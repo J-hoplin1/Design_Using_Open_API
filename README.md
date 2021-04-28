@@ -38,11 +38,11 @@ Kovid-Mail
 
   - Ubuntu 18.04 LTS
 
-  - Python 3.6.9(Migrated)
+  - Python 3.6.9(Migrated : 3.5 -> 3.6.9)
 
   - Script Daemonize + Scheduler
 
-  - HW Info : vCPU x 2 + 4GB RAM
+  - Server env Info : vCPU x 2 + 4GB RAM
 
 - 서비스에서 사용된 주요 기술들
 

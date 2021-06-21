@@ -2,12 +2,17 @@ Kovid-Mail
 ===
 ***
 
-#### Kovid-Mail은 메일 서비스입니다.
+#### Kovid-Mail은 금일 코로나 메일 서비스입니다.
 
 #### 구독을 하시면 매일 아침 10시~11시 사이에 대한민국 코로나 확진자 관련 정보와 보건복지부 브리핑, 주요 뉴스를 받아보실수 있습니다.
 
 ***
+pymysql connection error 1698이 발생한 경우에는 sql
+    
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '(pw)'; 
 
+쉘을 실행해주시기 바랍니다.
+***
 ### 패치노트
 
 - [Release Note 20210215(ver 1.0.0)]()

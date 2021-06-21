@@ -9,7 +9,7 @@ sqlConnection :
 
 serviceExecuteData :
  apiKey : ""
- apiURL : ""
+ apiURL : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"
  hostermail : ""
  hostermailpw : ""
  bitlykey : ""

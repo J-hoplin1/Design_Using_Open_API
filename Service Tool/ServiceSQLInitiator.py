@@ -93,7 +93,7 @@ class dataBaseInitiator(object):
             self.initateServiceDatas()
     
     def initateServiceDatas(self) -> None:
-        print("\nInitiating Service Datas. Please revise yml file after this work(sqlConnection - db).")
+        print("\nInitiating Service Datas. Please revise yml file after this work (sqlConnection - db - covid19MailServiceData).")
         self.cursor.execute("USE covid19MailServiceData")
         sqlState = f"""
             INSERT INTO adminDatas (APIKEY,APIURL,HOSTERMAIL,HOSTERMAILPW,BITLYKEY)

@@ -12,6 +12,8 @@ pymysql connection error 1698이 발생한 경우에는 sql
     ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '(pw)'; 
 
 쉘을 실행해주시기 바랍니다.
+
+처음 서비스를 실행시키기 위해서는 ServiceSQLInitiator로 데이터베이스 구조를 초기화해주어야합니다. 이 작업을 하기 전에 config.yml파일에 설정값(API Key, Hostermail, pw등)을 설정한 상태에서 데이터베이스 구조 초기화를 해주시기 바랍니다.  
 ***
 ### 패치노트
 

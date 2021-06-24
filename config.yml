@@ -1,16 +1,11 @@
----
-
-sqlConnection :
- user : ""
- password : ""
- host : ""
- db : ""
-
-
-serviceExecuteData :
- apiKey : ""
- apiURL : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"
- hostermail : ""
- hostermailpw : ""
- bitlykey : ""
-...
+serviceExecuteData:
+  apiKey: 
+  apiURL: 
+  bitlykey: 
+  hostermail: 
+  hostermailpw: 
+sqlConnection:
+  db: covid19MailServiceData
+  host: 127.0.0.1
+  password: hoplin123
+  user: root

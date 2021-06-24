@@ -36,7 +36,9 @@ class adminTool(object):
         self.checker = patternChecker()
         # Declar SQL Manager
         self.DBManager = SQLConnectorManager()
-        # Initiate subscriber data : Generate subs.json
+        '''
+        아래 부분에서 subs.json을 초기화합니다.
+        '''
         self.DBManager.generateSublist()
         self.DBManager.functionDatasInitiater(streamData)
         self.apiKey = streamData.APIKEY

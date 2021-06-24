@@ -58,7 +58,7 @@ class letsGetBitlyShortURL(object):
         }
         r = requests.get(self.groupGUID,headers = headers)
         if int(r.status_code) >= 400:
-            print(f"Something went wrong while API Call : Status Code {r.status_code}")
+            print(f"Something went wrong while Bitly API Call : Status Code {r.status_code}")
             print("Force Close : Exception Occured")
             raise letsGetBitlyShortURL.bitlyAPIResCode
         responseJSON = r.json()

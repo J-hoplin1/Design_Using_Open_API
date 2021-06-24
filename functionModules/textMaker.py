@@ -24,6 +24,6 @@ class makeText(object):
             text = f"{p[0]} : {p[1]}\n"
             issuesText = issuesText + text
         
-        lastText = '\n\n\n\n\n\n\n데이터 제공 : 대한민국 행정안전부 공공데이터 포털\n서비스 제공자 : Hoplin (https://github.com/J-hoplin1)'
+        lastText = '\n\n\n\n데이터(API) 제공 : 대한민국 행정안전부 공공데이터 포털\n대한민국 코로나 바이러스 감염증 공식사이트 : http://ncov.mohw.go.kr/ \n서비스 제공자 : Hoplin (https://github.com/J-hoplin1)'
         completedText = InfoText + breifText + issuesText + lastText
         return completedText

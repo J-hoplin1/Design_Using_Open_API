@@ -1,30 +1,30 @@
 {
-    "dataDate": "2021-04-03",
+    "dataDate": "2021-06-24",
     "data": {
-        "totalDecidedPatient": "104736",
-        "todayDecidedPatient": "543",
-        "totalDeath": "1740",
-        "increasedDeath": "3",
-        "CumulatedConfirmPercentage": "1.3506805825"
+        "totalDecidedPatient": "153155",
+        "todayDecidedPatient": "610",
+        "totalDeath": "2008",
+        "increasedDeath": "1",
+        "CumulatedConfirmPercentage": "1.4843749318"
     },
     "briefing": {
         "briefTopics1": [
-            "¸¶½ºÅ© ¹ÌÂø¿ë µî ÇÙ½É¹æ¿ª¼öÄ¢ À§¹İ¿¡ ¹«°ü¿ë ¿øÄ¢",
-            "https://bit.ly/3dsSTfo"
+            "ë°©ì—­ê³¼ ì¼ìƒíšŒë³µì˜ ê· í˜•ì„ ìœ„í•œ ì°¸ì—¬ì™€ í˜‘ì¡° í•„ìš”",
+            "https://bit.ly/2UoroNZ"
         ],
         "briefTopics2": [
-            "ÁÖ¿ä º¸°ÇÀÇ·á´ÜÃ¼Àåµé, ¾Æ½ºÆ®¶óÁ¦³×Ä« ¹é½Å Á¢Á¾",
-            "https://bit.ly/3wm0yo7"
+            "ì¼ í‰ê· í™˜ì 444.4ëª…ìœ¼ë¡œ ì „ì£¼ ëŒ€ë¹„(15.2%) 79.9ëª… ê°ì†Œ",
+            "https://bit.ly/3j3WftL"
         ]
     },
     "hotIssue": {
         "issueTopics1": [
-            "Á¤ ÃÑ¸® ¡°ÄÚ·Î³ª19 À§ÅÂ·Î¿î »óÈ²¡¦¹æ¿ª¿¡ °æ°¢½É °¡Á®¾ß¡±",
-            " https://www.korea.kr/special/policyFocusView.do?newsId=148885804&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+            "â€˜ê¸€ë¡œë²Œ ë°±ì‹  í—ˆë¸Œí™” TFâ€™ ì¶œë²”â€¦â€œêµ­ë‚´ ë°±ì‹  ìƒì‚°ì—­ëŸ‰ ê°•í™”â€",
+            " https://www.korea.kr/news/policyNewsView.do?newsId=148888328 "
         ],
         "issueTopics2": [
-            "¹æ¿ª´ç±¹ ¡°ÀÌÆ²Â° 500¸í´ë È®Áø¡¦±äÀå°¨ ÃÖ°í·Î ³ô¿© ´ëÀÀ¡±",
-            " https://www.korea.kr/special/policyFocusView.do?newsId=148885788&pageIndex=1&pkgId=49500742&pkgSubId=&pkgSubs=&exceptNewsId=&cardYn=&cateId=&cateIds=&sectId=&se "
+            "ì–´ë¦°ì´ì§‘Â·ìœ ì¹˜ì›Â·ì´ˆ1~2 êµì‚¬, 7~8ì›” ë°©í•™ì¤‘ ì ‘ì¢…",
+            " https://www.korea.kr/news/policyNewsView.do?newsId=148888342 "
         ]
     }
 }

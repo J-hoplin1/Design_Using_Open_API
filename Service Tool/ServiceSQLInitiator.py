@@ -47,10 +47,19 @@ class dataBaseInitiator(object):
         self.sqlConnection = None # Variable : Save Connection Instance
         self.cursor = None # Variable : Save SQL Cursor
         self.ymlIns = None
-        with open('../config.yml') as f:
+        '''
+        Read configuration yaml file
+        '''
+        with open('../config.yml','r') as f:
             self.ymlIns = yaml.load(f,yaml.FullLoader)
+        self.ymlIns['sqlConnection']['db'] = 'covid19MailServiceData'
         self.getConnectionAndCursor()
-
+        '''
+        save yaml file after get Connection -> save database name
+        '''
+        with open('../config.yml','w') as f:
+            yaml.dump(self.ymlIns,f,default_flow_style=False)
+        
     def getConnectionAndCursor(self) -> None:
         self.sqlConnection = sql.connect(
             user=f"{self.ymlIns['sqlConnection']['user']}",
@@ -93,7 +102,7 @@ class dataBaseInitiator(object):
             self.initateServiceDatas()
     
     def initateServiceDatas(self) -> None:
-        print("\nInitiating Service Datas. Please revise yml file after this work (sqlConnection - db - covid19MailServiceData).")
+        print("\nInitiating Service Datas.")
         self.cursor.execute("USE covid19MailServiceData")
         sqlState = f"""
             INSERT INTO adminDatas (APIKEY,APIURL,HOSTERMAIL,HOSTERMAILPW,BITLYKEY)

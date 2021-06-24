@@ -86,7 +86,7 @@ class dataFromAPICall(object):
         for brf in mainbrief:
             briefTasks[brf.text] = self.getShortLink.getshortenURL(covidNotice + brf['href'])
         sounds.append(briefTasks)
-        hotIssue = bs.findAll('a',{'href' : re.compile('https\:\/\/www\.korea\.kr\/special\/policyFocusView\.do\?newsId\=[0-9A-Za-z]*')})
+        hotIssue = bs.findAll('a',{'href' : re.compile('https\:\/\/www\.korea\.kr\/[\w?=]+')})
         for u in hotIssue:
             hotIssues[u.text] = u['href']
         sounds.append(hotIssues)

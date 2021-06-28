@@ -1,20 +1,20 @@
 {
-    "dataDate": "2021-06-24",
+    "dataDate": "2021-06-28",
     "data": {
-        "totalDecidedPatient": "153155",
-        "todayDecidedPatient": "610",
-        "totalDeath": "2008",
-        "increasedDeath": "1",
-        "CumulatedConfirmPercentage": "1.4843749318"
+        "totalDecidedPatient": "155572",
+        "todayDecidedPatient": "501",
+        "totalDeath": "2015",
+        "increasedDeath": "2",
+        "CumulatedConfirmPercentage": "1.4950097471"
     },
     "briefing": {
         "briefTopics1": [
-            "방역과 일상회복의 균형을 위한 참여와 협조 필요",
-            "https://bit.ly/2UoroNZ"
+            "거리두기 개편 수도권 2단계, 비수도권 1단계 적용",
+            "https://bit.ly/3A6tgeC"
         ],
         "briefTopics2": [
-            "일 평균환자 444.4명으로 전주 대비(15.2%) 79.9명 감소",
-            "https://bit.ly/3j3WftL"
+            "64만여 가구에 가구당 50만 원 또는 20만 원 한시 생계지원금 지급!",
+            "https://bit.ly/35Yvvms"
         ]
     },
     "hotIssue": {

@@ -58,7 +58,6 @@ class dataFromAPICall(object):
         searchStart = executedPoint.strftime("%Y%m%d") # strftime으로 포맷을 맞추어준다."%Y%m%d" : YYYYMMDD형태로 출력
         #끝범위
         searchEnd = endDate.strftime("%Y%m%d") # 끝범위를 다음날로 해줘야 오늘 날짜에 대한 값만 나온다.
-
         #Request Query를 만든다.
         queryParameter = '?' + urlencode({
             quote_plus('serviceKey') : self.apiKey,

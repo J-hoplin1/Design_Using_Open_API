@@ -18,33 +18,25 @@ class SQLConnectorManager(object):
         # Define SQL Cursor 
         self.cursor = self.sqlCNT.cursor(sql.cursors.DictCursor)
     
-    def generateSublist(self):
-        # SQL Statement : Get subscriber list 
-        sqlState = "SELECT email FROM subslist"
-        # Execute SQL Statement with cursor
-        self.cursor.execute(sqlState)
-        # Get List Value :  Each value has type of dictionary value
-        emailList = self.cursor.fetchall()
-        emailList = [x['email'] for x in emailList]
-        
-        # Basic JSON prototype
-        jsonProto = {
-            "subscribers" : emailList
-        }
-        # Save subs.json
-        with open('../Datas/subs.json','w') as i:
-            json.dump(jsonProto,i,indent = 4)
-    
     # Initiate streamDatas.py
-    def functionDatasInitiater(self,instance):
+    def functionDatasInitiater(self):
         sqlState = "SELECT * FROM adminDatas"
         self.cursor.execute(sqlState)
+        return self.cursor.fetchall()
+    
+    def returnSubscribers(self):
+        sqlState = f'SELECT * FROM subslist'
+        self.cursor.execute(sqlState)
         datas = self.cursor.fetchall()
-        instance.APIKEY = unquote(datas[0]['APIKEY'])
-        instance.APIURL = datas[0]['APIURL']
-        instance.HOSTEREMAIL = datas[0]['HOSTERMAIL']
-        instance.HOSTEREMAILPW = datas[0]['HOSTERMAILPW']
-        instance.BITLYKEY = datas[0]['BITLYKEY']
+        li = []
+        for i in datas:
+            li.append(i['email'])
+        return li
+    
+    def returnMailInfo(self):
+        sqlState = f'SELECT HOSTERMAIL,HOSTERMAILPW FROM adminDatas'
+        self.cursor.execute(sqlState)
+        return self.cursor.fetchall()
     
     def addNewSub(self, mail):
         # SQL statement : Register new subscriber to database
@@ -52,13 +44,13 @@ class SQLConnectorManager(object):
         self.cursor.execute(sqlState)
         # Commit change to SQL
         self.sqlCNT.commit()
-        # Reload subs.json
-        self.generateSublist()
         
     def deleteSub(self, mail):
         # SQL statement : Delete subscribers from database
         sqlState = f'DELETE FROM subslist WHERE email = \'{mail}\''
         self.cursor.execute(sqlState)
         self.sqlCNT.commit()
-        # Reload subs.json
-        self.generateSublist()
+
+if __name__=="__main__":
+    a = SQLConnectorManager()
+    print(a.returnMailInfo()[0])

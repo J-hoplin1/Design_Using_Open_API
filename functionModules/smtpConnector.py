@@ -12,8 +12,6 @@ from .textMaker import makeText
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-from Datas.streamDatas import streamData
-
 # Pattern Checker Instance
 checker = patternChecker()
 
@@ -27,7 +25,7 @@ def mailSend(smtpReqDatas, message,receiver):
         else:
             print('{}'.format(responseSignal))
         
-def generateTextMime(receiver):
+def generateTextMime(receiver,mail,pw):
     textMakerInstance = makeText()
     if not checker.checkEmailPattern(receiver):
         print("Fatal Error : Wrong email Pattern Please Check Again")
@@ -35,18 +33,18 @@ def generateTextMime(receiver):
     else:
         text = textMakerInstance.makeText()
         title = "{} 코로나 19 데이터".format(datetime.now(timezone('Asia/Seoul')).strftime('%Y년 %m월 %d일'))
-        sendMail(receiver, text, title)
+        sendMail(receiver, text, title,mail,pw)
         
-def sendMail(receiver,text,title):
+def sendMail(receiver,text,title,mail,pw):
     smtpReqDatas = {
         "server" : 'smtp.naver.com',
-        "hostersEmail" : streamData.HOSTEREMAIL, # Hoster's E-mail Address here (Naver Mail)
-        "hostersEmailPW" : streamData.HOSTEREMAILPW, # Hoster's E-mail PW here
+        "hostersEmail" : mail, # Hoster's E-mail Address here (Naver Mail)
+        "hostersEmailPW" : pw, # Hoster's E-mail PW here
         "SMTPPort" : 587
     }
     title = title
     paragraph = text
-    hoster = streamData.HOSTEREMAIL # Hoster's E-mail Address
+    hoster = mail # Hoster's E-mail Address
     reveive = receiver
     
     message = MIMEText(_text = paragraph, _charset = "utf-8")

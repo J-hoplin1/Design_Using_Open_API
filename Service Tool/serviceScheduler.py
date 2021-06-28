@@ -5,7 +5,6 @@ from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import generateTextMime
 from functionModules.patternChecker import patternChecker
 from functionModules.databaseConnector import SQLConnectorManager
-from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
 from datetime import datetime
@@ -20,12 +19,11 @@ class scheduler(object):
         # Declar SQL Manager
         self.DBManager = SQLConnectorManager()
         # Initiate subscriber data : Generate subs.json
-        self.DBManager.generateSublist()
-        self.DBManager.functionDatasInitiater(streamData)
-        self.apiKey = streamData.APIKEY
-        self.apiUrl = streamData.APIURL
-        self.bitlykey = streamData.BITLYKEY
-        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiUrl,self.bitlykey)
+        getDatas = self.DBManager.functionDatasInitiater()[0]
+        self.apiKey = getDatas['APIKEY']
+        self.apiURL = getDatas['APIURL']
+        self.bitlyKey = getDatas['BITLYKEY']
+        self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiURL,self.bitlyKey)
     
     def initiateData(self):
         self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
@@ -45,12 +43,11 @@ class scheduler(object):
                 pass
             else:
                 self.writeStreamHistory()
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
-                subscriberList = subs['subscribers']
+                emailInfos = self.DBManager.returnMailInfo()[0]
+                subscriberList = self.DBManager.returnSubscribers()
                 self.initiateData()
                 for i in subscriberList:
-                    generateTextMime(i)
+                    generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
                 latestAPIUpdatedTime = str(item.find('createDt').text)
                 break
 
@@ -60,6 +57,7 @@ def start():
         
         schedulerInstance.startStream()
     except BaseException as e:
+        print(e)
         with open('../Datas/ErrorLog.txt','a') as t:
             t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
         t.close()
@@ -73,5 +71,4 @@ while loop:
         time.sleep(5)
     except BaseException as e:
         print("Service Forecly Closed")
-        os.remove('../Datas/subs.json')
         loop = False

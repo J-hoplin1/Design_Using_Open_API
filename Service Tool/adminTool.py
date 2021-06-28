@@ -7,7 +7,6 @@ from functionModules.apiCaller import dataFromAPICall
 from functionModules.smtpConnector import *
 from functionModules.patternChecker import patternChecker
 from functionModules.databaseConnector import SQLConnectorManager
-from Datas.streamDatas import streamData
 from enum import Enum
 from urllib.parse import unquote
 
@@ -39,11 +38,10 @@ class adminTool(object):
         '''
         아래 부분에서 subs.json을 초기화합니다.
         '''
-        self.DBManager.generateSublist()
-        self.DBManager.functionDatasInitiater(streamData)
-        self.apiKey = streamData.APIKEY
-        self.apiURL = streamData.APIURL
-        self.bitlyKey = streamData.BITLYKEY
+        getDatas = self.DBManager.functionDatasInitiater()[0]
+        self.apiKey = getDatas['APIKEY']
+        self.apiURL = getDatas['APIURL']
+        self.bitlyKey = getDatas['BITLYKEY']
     
     def initiateData(self):
         apiCallInstance = dataFromAPICall(self.apiKey,self.apiURL,self.bitlyKey)
@@ -53,15 +51,15 @@ class adminTool(object):
         while True:
             opt = selectOpt()
             if opt == options.Service_Test:
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
-                subscriberList = subs['subscribers']
                 self.initiateData()
-                for i in subscriberList:
-                    generateTextMime(i)
+                subscriberList = self.DBManager.returnSubscribers()
+                if not subscriberList:
+                    print("Subscriber not Exist!")
+                else:
+                    emailInfos = self.DBManager.returnMailInfo()[0]
+                    for i in subscriberList:
+                        generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
             elif opt == options.Add_Subscriber:
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
                 newSub = input("새 구독자의 이메일 입력하기 : ")
                 if not self.checker.checkEmailPattern(newSub):
                     print("Fatal Error : Wrong email Pattern Please Check Again")
@@ -71,18 +69,13 @@ class adminTool(object):
                     print("구독자 추가가 정상적으로 완료되었습니다.")
     
             elif opt == options.View_Subscriber_List:
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
-                sublist = subs['subscribers']
+                sublist = self.DBManager.returnSubscribers()
                 print('\n' + '=' * 25)
                 for o,p in enumerate(sublist,start = 1):
                     print(f'{o}. {p}')
                 print('=' * 25 + "\n")
     
             elif opt == options.Delete_User:
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
-                sublist = subs['subscribers']
                 loop = True
                 while loop:
                     deleteSub = input("삭제하고자 하는 구독자의 이메일 입력하기('exit'을 입력하면 종료합니다) : ")
@@ -98,33 +91,17 @@ class adminTool(object):
                         except ValueError:
                             print("해당 이메일은 구독자 목록에 없습니다.")
                             loop = False
-            # Add backup
-            elif opt == options.Backup:
-                try:
-                    try:
-                        if not os.path.exists('Backup'):
-                            os.makedirs('Backup')
-                        else:
-                            pass
-                    except OSError as e:
-                        print("Error Occured While generating directory 'Backup'")
-                    shutil.copyfile('../Datas/subs.json', f'Backup/subs.json')
-            
-                except BaseException as e:
-                    print(e)
-                    pass
+                            
             elif opt == options.Broadcast:
                 title = input("Broadcast title : ")
                 text = input("Broadcast content : ")
-                with open('../Datas/subs.json','r') as f:
-                    subs = json.load(f)
-                subscriberList = subs['subscribers']
+                subscriberList = self.DBManager.returnSubscribers()
+                emailInfos = self.DBManager.returnMailInfo()[0]
                 for i in subscriberList:
-                    sendMail(i,text,title)
+                    sendMail(i,text,title,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
             
             else:
                 print("Service Close")
-                os.remove('../Datas/subs.json')
                 break
 
                 
@@ -134,4 +111,3 @@ if __name__=="__main__":
         adTool.mainLoop()
     except BaseException as e:
         print(f"Error Occured : {e}")
-        os.remove('../Datas/subs.json')

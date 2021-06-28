@@ -4,7 +4,7 @@ Code Written By hoplin
 Latest update : 2021/03/29
 License : MIT License(Open Source)
 '''
-
+import re
 import yaml
 import pymysql as sql
 import json
@@ -104,21 +104,46 @@ class dataBaseInitiator(object):
     def initateServiceDatas(self) -> None:
         print("\nInitiating Service Datas.")
         self.cursor.execute("USE covid19MailServiceData")
+        publicAPIKey = input("Public API Key 입력하기 : ")
+        apiURL = input("Public API End Point주소를 입력하기 : ")
+        hostermail = input("송신 Email 입력하기 : ")
+        hosteremailPW = input("송신 Email의 PW 입력하기 : ")
+        bitlykey = input("bitly API Key 입력하기 : ")
         sqlState = f"""
             INSERT INTO adminDatas (APIKEY,APIURL,HOSTERMAIL,HOSTERMAILPW,BITLYKEY)
-            VALUES (\'{self.ymlIns['serviceExecuteData']['apiKey']}\',\'{self.ymlIns['serviceExecuteData']['apiURL']}\',\'{self.ymlIns['serviceExecuteData']['hostermail']}\',\'{self.ymlIns['serviceExecuteData']['hostermailpw']}\',\'{self.ymlIns['serviceExecuteData']['bitlykey']}\');
+            VALUES (\'{publicAPIKey}\',\'{apiURL}\',\'{hostermail}\',\'{hosteremailPW}\',\'{bitlykey}\');
         """
         self.cursor.execute(sqlState)
         self.sqlConnection.commit()
-
-    def moveDataJsonToSQL(self):
-        with open('../Datas/subs.json', 'r') as f:
-            subs = json.load(f)
-        self.cursor.execute("USE covid19MailServiceData;")
-        for mail in list(subs['subscribers']):
-            self.cursor.execute(f'INSERT INTO subslist(email) VALUES(\'{mail}\')')
+        print("DataBase 초기화 완료!")
+    
+    def changeValues(self,opts) -> None:
+        selected = {
+            keys.Public_API_Key : 'APIKEY',
+            keys.Public_API_EndPoint : 'APIURL',
+            keys.HosterMail : 'HOSTERMAIL',
+            keys.HosterMailPW : 'HOSTERMAILPW',
+            keys.BitlyKey : 'BITLYKEY'
+        }
+        def executeState(slt):
+            newValue = input(f"변경할 {slt}입력하기 : ")
+            self.cursor.execute(f"USE covid19MailServiceData")
+            self.cursor.execute(f"UPDATE adminDatas SET {slt}=\'{newValue}\'")
             self.sqlConnection.commit()
-
+        
+        if opts == keys.Public_API_Key:
+            executeState(selected[opts])
+        elif opts == keys.Public_API_EndPoint:
+            executeState(selected[opts])
+        elif opts == keys.HosterMail:
+            executeState(selected[opts])
+        elif opts == keys.HosterMailPW:
+            executeState(selected[opts])
+        elif opts == keys.BitlyKey:
+            executeState(selected[opts])
+        else:
+            pass
+        
     def checkConnectionStatus(self):
         if self.sqlConnection:
             print("Still Connected!")
@@ -130,19 +155,28 @@ class dataBaseInitiator(object):
         self.cursor.execute("DROP DATABASE covid19MailServiceData")
     
 
-option = Enum('option',["Initiate_Database_And_Move_Data","Only_Initiate_Database_Structure", "Only_Move_JSON_to_Database","Connection_Check","Delete_Database","Close"])
+option = Enum('option',["Initiate_Database_Structure",
+                        "Delete_Database",
+                        "Edit_Keys",
+                        "Close"])
+keys = Enum('keys',["Public_API_Key",
+                   "Public_API_EndPoint",
+                   "HosterMail",
+                   "HosterMailPW",
+                   "BitlyKey",
+                   "Close"])
 
-def selectOpt() -> Enum:
-    opt = [f'{p.value}. {p.name}' for p in option]
+def selectOpt(enums) -> Enum:
+    options = [f'{p.value}. {p.name}' for p in enums]
     while True:
         print('-' * 20)
-        for i in opt:
+        for i in options:
             print(i)
         print('-' * 20)
         try:
             select = int(input(">> "))
-            if 1 <= select <= len(opt):
-                return option(select)
+            if 1 <= select <= len(options):
+                return enums(select)
         except ValueError:
             pass
         except KeyboardInterrupt:
@@ -152,17 +186,12 @@ def selectOpt() -> Enum:
 def loop() -> None:
     initiator = dataBaseInitiator()
     while True:
-        opt = selectOpt()
-        if opt == option.Initiate_Database_And_Move_Data:
+        opt = selectOpt(option)
+        if opt == option.Initiate_Database_Structure:
             initiator.initiateEssentialDatabase()
-            print("\nMove existing data to SQL\n")
-            initiator.moveDataJsonToSQL()
-        elif opt == option.Only_Initiate_Database_Structure:
-            initiator.initiateEssentialDatabase()
-        elif opt == option.Only_Move_JSON_to_Database:
-            initiator.moveDataJsonToSQL()
-        elif opt == option.Connection_Check:
-            initiator.checkConnectionStatus()
+        elif opt == option.Edit_Keys:
+            opts = selectOpt(keys)
+            initiator.changeValues(opts)
         elif opt == option.Delete_Database:
             initiator.deleteDatabase()
         else:

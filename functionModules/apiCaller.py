@@ -91,12 +91,11 @@ class dataFromAPICall(object):
         sounds.append(hotIssues)
         return sounds
         
-    def reProcessXML(self,BSXML : BeautifulSoup) -> None:
+    def reProcessXML(self,BSXML : BeautifulSoup) -> bool:
         res = BSXML# lxml-xml 매우빠르고 유일하게 지원되는 XML파서이다.
         item = res.findAll('item')
         if len(item) < 2:
-            print("API data not updated yet. Try progress again after 10 minute")
-            return
+            return False
         else:
             print("API data updated successfully. Progress process")
             dayBefore = item[1]
@@ -126,6 +125,7 @@ class dataFromAPICall(object):
         for i,o in enumerate(issueTopics, start = 1):
             dataDictionary['hotIssue']['issueTopics{}'.format(i)] = [o , hotIssues[o]]
         self.dumpToJSON(dataDictionary)
+        return True
     
     def dumpToJSON(self, dicInstance : MutableSequence) -> None:
         with open('../Datas/smtpSendDatas.json','w') as f:

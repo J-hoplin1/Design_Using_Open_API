@@ -29,15 +29,14 @@ class dataBaseInitiator(object):
     2. getConnectionAndCursor : Make a Connection with MySQL Server and Initiate MySQL Remote Cursor
 
     3. initiateEssentialDatabase : Have variable "essentialDBList". This variables contains essential database name and it's 'tablename' and 'tableQuery'. Just revise this dictionary if you want to change service Database structure
-
-    4. moveDataJsonToSQL : This method is for user who wants to upgrade version 'WithoutSQL'(https://github.com/J-hoplin1/Covid19_Mail_Service/tree/WithoutSQLVersion) to 'WithSQL'(https://github.com/J-hoplin1/Covid19_Mail_Service/tree/Server-Operating-Code-ver1). Helps to move json data to save SQL
-        -> Please revise your json location before execute
-
-    5. checkConnectionStatus : Check Status if this process(Code) connected with MySQL
     
-    6. initateServiceDatas : Initiate Service executive Datas with reading yml file
+    4. initateServiceDatas : Initiate Essential Values for this service
     
-    7. deleteDatabase : Delete Service Database
+        - Public API Key (for data.go.kr)
+        - Public API URL
+        - Bitly API Key
+        - Hoster Email
+        - Hoster PW
 
     '''
     class connectionExceptions(Exception):
@@ -88,18 +87,17 @@ class dataBaseInitiator(object):
                 """
             }
         }
-        for ip in list(essentialDBList.keys()):
-            print(f"\nInitiating Database {ip}\n")
-            #Create database
-            self.cursor.execute(f"CREATE DATABASE {ip}")
-            #Make Cursor to use new generated Database : To initiate tables
-            self.cursor.execute(f"USE {ip}")
-            print("=" * 50)
-            for up in list(essentialDBList[ip]):
-                print(f"Initiating table {ip} - {up}")
-                self.cursor.execute(essentialDBList[ip][up])
-            print("=" * 50)
-            self.initateServiceDatas()
+        print(f"\nInitiating Database 'covid19MailServiceData'\n")
+        #Create database
+        self.cursor.execute(f"CREATE DATABASE covid19MailServiceData")
+        #Make Cursor to use new generated Database : To initiate tables
+        self.cursor.execute(f"USE covid19MailServiceData")
+        print("=" * 50)
+        for up in list(essentialDBList['covid19MailServiceData']):
+            print(f"Initiating table covid19MailServiceData - {up}")
+            self.cursor.execute(essentialDBList['covid19MailServiceData'][up])
+        print("=" * 50)
+        self.initateServiceDatas()
     
     def initateServiceDatas(self) -> None:
         print("\nInitiating Service Datas.")
@@ -199,4 +197,7 @@ def loop() -> None:
             break
 
 if __name__ == "__main__":
-    loop()
+    try:
+        loop()
+    except sql.err.ProgrammingError as e:
+        print("Database already exist! Please check again.")

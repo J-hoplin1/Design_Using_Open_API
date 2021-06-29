@@ -1,20 +1,20 @@
 {
-    "dataDate": "2021-06-28",
+    "dataDate": "2021-06-29",
     "data": {
-        "totalDecidedPatient": "155572",
-        "todayDecidedPatient": "501",
-        "totalDeath": "2015",
+        "totalDecidedPatient": "156167",
+        "todayDecidedPatient": "595",
+        "totalDeath": "2017",
         "increasedDeath": "2",
-        "CumulatedConfirmPercentage": "1.4950097471"
+        "CumulatedConfirmPercentage": "1.4960125523"
     },
     "briefing": {
         "briefTopics1": [
-            "거리두기 개편 수도권 2단계, 비수도권 1단계 적용",
-            "https://bit.ly/3A6tgeC"
+            "수도권 환자 증가에 따른 수도권 특별방역대책 추진",
+            "https://bit.ly/2UEuv4v"
         ],
         "briefTopics2": [
-            "64만여 가구에 가구당 50만 원 또는 20만 원 한시 생계지원금 지급!",
-            "https://bit.ly/35Yvvms"
+            "거리두기 개편 수도권 2단계, 비수도권 1단계 적용",
+            "https://bit.ly/3A6tgeC"
         ]
     },
     "hotIssue": {

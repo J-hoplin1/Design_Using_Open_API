@@ -29,7 +29,7 @@ def selectOpt() -> options:
         except KeyboardInterrupt:
             print("\n비정상적인 종료입니다.")
             pass
-   
+
 class adminTool(object):
     def __init__(self):
         self.checker = patternChecker()
@@ -42,23 +42,26 @@ class adminTool(object):
         self.apiKey = getDatas['APIKEY']
         self.apiURL = getDatas['APIURL']
         self.bitlyKey = getDatas['BITLYKEY']
+        self.apiCallInstance = dataFromAPICall(self.apiKey,self.apiURL,self.bitlyKey)
     
     def initiateData(self):
-        apiCallInstance = dataFromAPICall(self.apiKey,self.apiURL,self.bitlyKey)
-        apiCallInstance.reProcessXML(apiCallInstance.buildRequests())
-    
+        return self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests())
+        
     def mainLoop(self):
         while True:
             opt = selectOpt()
             if opt == options.Service_Test:
-                self.initiateData()
-                subscriberList = self.DBManager.returnSubscribers()
-                if not subscriberList:
-                    print("Subscriber not Exist!")
+                apiUpdate = self.initiateData()
+                if not apiUpdate:
+                    print("API not updated Yet!")
                 else:
-                    emailInfos = self.DBManager.returnMailInfo()[0]
-                    for i in subscriberList:
-                        generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
+                    subscriberList = self.DBManager.returnSubscribers()
+                    if not subscriberList:
+                        print("Subscriber not Exist!")
+                    else:
+                        emailInfos = self.DBManager.returnMailInfo()[0]
+                        for i in subscriberList:
+                            generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
             elif opt == options.Add_Subscriber:
                 newSub = input("새 구독자의 이메일 입력하기 : ")
                 if not self.checker.checkEmailPattern(newSub):

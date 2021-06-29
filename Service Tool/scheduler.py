@@ -26,7 +26,7 @@ class scheduler(object):
         self.apiCallInstance = dataFromAPICall(self.apiKey, self.apiURL,self.bitlyKey)
     
     def initiateData(self):
-        self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
+        return self.apiCallInstance.reProcessXML(self.apiCallInstance.buildRequests()) # Generate smtpSendDatas
 
     def writeStreamHistory(self):
         dateObj = datetime.now(timezone('Asia/Seoul'))
@@ -45,11 +45,14 @@ class scheduler(object):
                 self.writeStreamHistory()
                 emailInfos = self.DBManager.returnMailInfo()[0]
                 subscriberList = self.DBManager.returnSubscribers()
-                self.initiateData()
-                for i in subscriberList:
-                    generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
-                latestAPIUpdatedTime = str(item.find('createDt').text)
-                break
+                apiUpdate = self.initiateData()
+                if not apiUpdate:
+                    pass
+                else:
+                    for i in subscriberList:
+                        generateTextMime(i,emailInfos['HOSTERMAIL'],emailInfos['HOSTERMAILPW'])
+                    latestAPIUpdatedTime = str(item.find('createDt').text)
+                    break
 
 schedulerInstance = scheduler()
 def start():

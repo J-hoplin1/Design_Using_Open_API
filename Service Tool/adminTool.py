@@ -11,7 +11,7 @@ from enum import Enum
 from urllib.parse import unquote
 
 
-options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Backup','Broadcast','End'])
+options = Enum('option',['Service_Test','Add_Subscriber','Delete_User','View_Subscriber_List','Broadcast','End'])
 
 def selectOpt() -> options:
     opt = [f'{p.value}. {p.name}' for p in options]

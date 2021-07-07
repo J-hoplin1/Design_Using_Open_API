@@ -10,13 +10,8 @@ import subprocess
 from enum import Enum
 import json
 import re
-try:
-    import yaml
-    import pymysql as sql
-except ModuleNotFoundError as e:
-    subprocess.call(['bash','basicSettings.sh'])
-    import yaml
-    import pymysql as sql
+import yaml
+import pymysql as sql
     
 class dataBaseInitiator(object):
     '''

@@ -4,12 +4,20 @@ Code Written By hoplin
 Latest update : 2021/03/29
 License : MIT License(Open Source)
 '''
-import re
-import yaml
-import pymysql as sql
-import json
-from enum import Enum
 
+
+import subprocess
+from enum import Enum
+import json
+import re
+try:
+    import yaml
+    import pymysql as sql
+except ModuleNotFoundError as e:
+    subprocess.call(['bash','basicSettings.sh'])
+    import yaml
+    import pymysql as sql
+    
 class dataBaseInitiator(object):
     '''
     DataBaseInitiator Document
@@ -46,7 +54,7 @@ class dataBaseInitiator(object):
         self.sqlConnection = None # Variable : Save Connection Instance
         self.cursor = None # Variable : Save SQL Cursor
         self.ymlIns = None
-        '''
+        '''echo `python3 DBManager.py`
         Read configuration yaml file
         '''
         with open('../config.yml','r') as f:

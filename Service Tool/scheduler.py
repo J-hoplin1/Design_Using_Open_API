@@ -65,8 +65,8 @@ def start():
             t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
         t.close()
             
-#schedule.every().day.at("10:00").do(start)
-schedule.every(10).seconds.do(start)
+schedule.every().day.at("10:00").do(start)
+
 
 while loop:
     try:

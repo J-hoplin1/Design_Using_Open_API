@@ -1,20 +1,20 @@
 {
-    "dataDate": "2021-06-29",
+    "dataDate": "2021-07-07",
     "data": {
-        "totalDecidedPatient": "156167",
-        "todayDecidedPatient": "595",
-        "totalDeath": "2017",
-        "increasedDeath": "2",
-        "CumulatedConfirmPercentage": "1.4960125523"
+        "totalDecidedPatient": "162753",
+        "todayDecidedPatient": "1212",
+        "totalDeath": "2033",
+        "increasedDeath": "1",
+        "CumulatedConfirmPercentage": "1.5319725965"
     },
     "briefing": {
         "briefTopics1": [
-            "수도권 환자 증가에 따른 수도권 특별방역대책 추진",
-            "https://bit.ly/2UEuv4v"
+            "강화된 방역 대응을 위해 수도권에 현행 거리두기 일주일 추가 연장",
+            "https://bit.ly/3ABMGZm"
         ],
         "briefTopics2": [
-            "거리두기 개편 수도권 2단계, 비수도권 1단계 적용",
-            "https://bit.ly/3A6tgeC"
+            "코로나19 확산 차단을 위한 수도권 방역조치 강화",
+            "https://bit.ly/3dQWZ1Y"
         ]
     },
     "hotIssue": {

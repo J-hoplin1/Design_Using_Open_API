@@ -1,11 +1,11 @@
 {
-    "dataDate": "2021-07-07",
+    "dataDate": "2021-07-08",
     "data": {
-        "totalDecidedPatient": "162753",
-        "todayDecidedPatient": "1212",
-        "totalDeath": "2033",
+        "totalDecidedPatient": "164028",
+        "todayDecidedPatient": "1275",
+        "totalDeath": "2034",
         "increasedDeath": "1",
-        "CumulatedConfirmPercentage": "1.5319725965"
+        "CumulatedConfirmPercentage": "1.5399341921"
     },
     "briefing": {
         "briefTopics1": [

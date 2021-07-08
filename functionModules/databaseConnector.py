@@ -8,6 +8,12 @@ class SQLConnectorManager(object):
     def __init__(self):
         with open('../config.yml') as f:
             self.ymlIns = yaml.load(f,yaml.FullLoader)
+            self.makeSQLConnectionInstance()
+    
+    '''
+    This method is for Re-Connect to SQL after long term waiting
+    '''
+    def makeSQLConnectionInstance(self):
         # Connect to MySQL and read Sub list
         self.sqlCNT = sql.connect(
             user=f"{self.ymlIns['sqlConnection']['user']}",

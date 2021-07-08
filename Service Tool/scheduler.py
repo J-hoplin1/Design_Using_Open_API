@@ -43,6 +43,7 @@ class scheduler(object):
                 pass
             else:
                 self.writeStreamHistory()
+                self.DBManager.makeSQLConnectionInstance()
                 emailInfos = self.DBManager.returnMailInfo()[0]
                 subscriberList = self.DBManager.returnSubscribers()
                 apiUpdate = self.initiateData()
@@ -65,8 +66,8 @@ def start():
             t.write('Exception Occured at {}\nException msg : {}\n\n'.format(datetime.now(timezone('Asia/Seoul')).strftime("%Y/%m/%d %H : %M : %S"),e))
         t.close()
             
-schedule.every().day.at("10:00").do(start)
-
+#schedule.every().day.at("10:00").do(start)
+schedule.every(10).seconds.do(start)
 
 while loop:
     try:

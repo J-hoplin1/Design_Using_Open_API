@@ -1,6 +1,7 @@
 import requests
 import json
 import re
+import ssl
 from pytz import timezone
 from typing import Any, MutableSequence
 from bs4 import BeautifulSoup
@@ -72,9 +73,11 @@ class dataFromAPICall(object):
         return res
 
     def addMainNews(self) -> MutableSequence:
+        # ssl 인증문제에 대한 해결
+        context = ssl._create_unverified_context()
         covidSite = "http://ncov.mohw.go.kr/index.jsp"
         covidNotice = "http://ncov.mohw.go.kr"
-        html = urlopen(covidSite)
+        html = urlopen(covidSite,context=context)
         bs = BeautifulSoup(html, 'html.parser')
         # Bug fix 2021 03 02 : 파싱 구역 지정을 조금 더 구체화하였습니다 -> 카드 뉴스로 인한 방해
         bs = bs.find('div',{'class' : 'm_news'})

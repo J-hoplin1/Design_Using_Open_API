@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "scheduler.py", line 5, in <module>
+    from functionModules.smtpConnector import generateTextMime
+  File "/workspace/Kovid-Mail/functionModules/smtpConnector.py", line 4, in <module>
+    from email.mime.multipart import MIMEMultipart # 다양한 형식(text,img,audio) 중첩하여 담기위한 객체
+  File "/usr/local/lib/python3.7/email/mime/multipart.py", line 9, in <module>
+    from email.mime.base import MIMEBase
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 724, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 818, in get_code
+  File "<frozen importlib._bootstrap_external>", line 916, in get_data
+KeyboardInterrupt

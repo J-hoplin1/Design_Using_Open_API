@@ -17,7 +17,7 @@ pymysql connection error 1698이 발생한 경우에는 sql
 ***
 ### 패치노트
 
-- [Release Note 20210215(ver 1.0.0)]()
+- [Release Note 20210215(ver 1.0.0)](Patch Notes/20210215.md)
 
 - [Release Note 20210227(ver 1.0.1)]()
 
@@ -31,11 +31,7 @@ pymysql connection error 1698이 발생한 경우에는 sql
 
 - [Release Note 20210401(ver 1.2.0)]()
 
-- [Release Note 20210403(ver 1.2.1)]()
-
-- [Release Note 20210411(ver 1.2.1)]()
-
-- [Release Note 20210628(ver 1.3.0)]()
+- [Release Note 20210628(ver 2.0.0)]()
 
 ***
 

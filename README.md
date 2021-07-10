@@ -17,21 +17,21 @@ pymysql connection error 1698이 발생한 경우에는 sql
 ***
 ### 패치노트
 
-- [Release Note 20210215(ver 1.0.0)](Patch Notes/20210215.md)
+- [Release Note 20210215(ver 1.0.0)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210215.md)
 
-- [Release Note 20210227(ver 1.0.1)]()
+- [Release Note 20210227(ver 1.0.1)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210227.md)
 
-- [Release Note 20210302(ver 1.1.0)]()
+- [Release Note 20210302(ver 1.1.0)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210302.md)
 
-- [Release Note 20210307(ver 1.1.1-alpha)]()
+- [Release Note 20210307(ver 1.1.1-alpha)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210307.md)
 
-- [Release Note 20210315(ver 1.1.1)]()
+- [Release Note 20210315(ver 1.1.1)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210315.md)
 
-- [Release Note 20210317(ver 1.1.1)]()
+- [Release Note 20210317(ver 1.1.1)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210317.md)
 
-- [Release Note 20210401(ver 1.2.0)]()
+- [Release Note 20210401(ver 1.2.0)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210401.md)
 
-- [Release Note 20210628(ver 2.0.0)]()
+- [Release Note 20210628(ver 2.0.0)](https://github.com/J-hoplin1/Kovid-Mail/blob/main/Patch%20Notes/20210628.md)
 
 ***
 
